@@ -1,5 +1,21 @@
 # Panda App
 
+## Ruby for Good
+This is a 2016 [Ruby for Good](http://rubyforgood.org/) project.
+## Goal
+We are building a web app for use on phones and tables that will help researchers record observations of animal behavior and output the data in csv form.
+### Major Features
+- User creation and authentication
+- Observation Schema Creation - define the behaviors and subjects being observed before observations start
+- Observation Collection - A real time mode for collecting observations, this part needs to be responsive
+- Data export - Covert the data to csv form and get it onto the researchers computers (email is preferable)
+
+### Skills Needed
+- Responsive design - This app should work phones and tablets of varying sizes
+- Front End JS - This app will be used over cell networks and will be used to collect data in real time, doing some of the logic/validation in the browser may help user experience.
+- Backed Development
+
+
 ## Setup
 
 ### System Requirements
@@ -29,4 +45,23 @@
 
 
 ## Deployment
-The TravisCI automagically deploy to the app to panda-app.herokuapp.com when a build on the *master* branch passes.
+TravisCI automagically deploys the master branch to [panda-app.herokuapp.com](panda-app.herokuapp.com) when a build on the *master* passes.
+
+# Workflow
+
+1.  Select an open issue to work on, create an issue if there isn't one
+- Make sure you local master branch is up to date with master on github
+```
+git checkout master && git pull origin master
+```
+- Create a feature branch, include the issue number
+```
+git checkout -b branch_name
+```
+- Write code (and tests)
+- Push your branch to github
+```
+git push -u origin branch_name
+```
+- Open a pull request on github, please have at least one team member review it and give it a :thumbsup:
+- Merge into master - this will trigger a deploy if the tests pass
