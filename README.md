@@ -7,6 +7,7 @@ We are building a web app for use on phones and tables that will help researcher
 ### Major Features
 - User creation and authentication
 - Observation Schema Creation - define the behaviors and subjects being observed before observations start
+- Sessions - Combine schema with rules for particular methods and metadata (start time, location, etc)
 - Observation Collection - A real time mode for collecting observations, this part needs to be responsive
 - Data export - Covert the data to csv form and get it onto the researchers computers (email is preferable)
 
