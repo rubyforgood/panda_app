@@ -11,11 +11,8 @@ We are building a web app for use on phones and tables that will help researcher
 - Observation Collection - A real time mode for collecting observations, this part needs to be responsive
 - Data export - Covert the data to csv form and get it onto the researchers computers (email is preferable)
 
-### Skills Needed
-- Responsive design - This app should work phones and tablets of varying sizes
-- Front End JS - This app will be used over cell networks and will be used to collect data in real time, doing some of the logic/validation in the browser may help user experience.
-- Backed Development
-
+### Quick Links
+- [waffle board](https://waffle.io/rubyforgood/panda_app)
 
 ## Setup
 
