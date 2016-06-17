@@ -50,8 +50,18 @@ Start or finish the session.
 }
 ```
 
-### GET /session/schema
-Get the active schema for this observation session.
+### GET /:user_id/schemes
+Get the schemes created by this user
+```
+{
+  schemes: [
+    { name: 'scheme1', id: 1 }
+  ]
+}
+```
+
+### GET /session/scheme
+Get the active scheme for this observation session.
 ```
 {
   subjects: [
@@ -84,13 +94,13 @@ Get the active schema for this observation session.
 }
 ```
 
-### POST/PUT /session/schema
-Create a new observation schema.
+### POST/PUT /scheme
+Create a new observation scheme.
 
 TODO: What should creating subject groups look like?
 ```
 {
-	schema: {
+	scheme: {
 		subjects: [
 			'tarzan', 'jane'
 		],
@@ -108,7 +118,10 @@ TODO: What should creating subject groups look like?
 }
 ```
 
-### PATCH /session/schema/behaviors/:name
+### DELETE /scheme
+Delete a schema
+
+### PATCH /session/scheme/behaviors/:name
 Update a defined behavior.
 
 ```
