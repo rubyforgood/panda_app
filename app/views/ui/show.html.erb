@@ -1,5 +1,8 @@
-<h1>Observation</h1>
-<%= form_for OpenStruct.new, as: :observation, :url => '/' do |f| %>
-  <p><%= f.label :animal %><br />
+<div class="box">
+<h1 class="context_marker">Observation</h1>
+<%= form_for fake, as: :observation, :url => '/', html: { class: 'entry' } do |f| %>
+  <p class="field"><%= f.label :animal %><br />
     <%= f.text_field :animal %></p>
+  <p class="actions"><%= f.submit %></p>
 <%- end -%>
+</div>
