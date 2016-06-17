@@ -1,9 +1,11 @@
 var mithril = require('mithril');
 
-var components = {
-  SchemeCreationForm: require('./components/scheme_creation_form')
+var apps = {
+  SchemeCreationForm: require('./components/scheme_creation_form'),
+  ObservationForm:    require('./components/observation_form'),
 };
 
 var element = document.querySelector('[data-mithril-component]');
 
-mithril.mount(element, components[element.getAttribute('data-mithril-component')]);
+var app = apps[element.getAttribute('data-mithril-component')];
+mithril.route(element, '/', app.routes);

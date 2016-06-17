@@ -147,4 +147,9 @@ const SchemeCreationForm = {
   }
 };
 
-module.exports = SchemeCreationForm;
+module.exports = {
+  routes: {
+    "/": SchemeCreationForm,
+    "/scheme": SchemeCreationForm,
+  },
+};
