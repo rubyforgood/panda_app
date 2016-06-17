@@ -1,11 +1,10 @@
-// const m = require('mithril');
-
 const SchemeCreationForm = {
-  controller: function() {
+  controller: function () {
     return {
       // scheme: new Scheme()
       scheme: {
         name: "an amazing scheme",
+        locked: true,
         subjects: ['Bob', 'Mary', 'Sponge'],
         behaviors: [
           {
@@ -19,7 +18,7 @@ const SchemeCreationForm = {
     };
   },
 
-  view: function(ctrl) {
+  view: function (ctrl) {
     return <form>
       <label for="scheme_name">
         Scheme Name
@@ -30,7 +29,17 @@ const SchemeCreationForm = {
         name="scheme[name]"
         value={ctrl.scheme.name}
       />
-
+      <div class="control-group">
+        <label for="scheme_locked">
+          Lock to User
+        </label>
+        <input
+          type="checkbox"
+          id="scheme_locked"
+          name="scheme[locked]"
+          checked={ctrl.scheme.locked}
+        />
+      </div>
       <fieldset>
         <legend>Subjects</legend>
         {ctrl.scheme.subjects.map((subject, index) => {
@@ -74,6 +83,7 @@ const SchemeCreationForm = {
                 id={`scheme_behavior_${ index }_type_state`}
                 name={`scheme[behavior][${ index }][type]`}
                 value="state"
+                checked={behavior.type == "state"}
               />
               <label for={`scheme_behavior_${ index }_type_event`}>
                 Event
@@ -83,6 +93,7 @@ const SchemeCreationForm = {
                 id={`scheme_behavior_${ index }_type_event`}
                 name={`scheme[behavior][${ index }][type]`}
                 value="event"
+                checked={behavior.type == "event"}
               />
             </div>
             <div class="control-group">
@@ -95,6 +106,7 @@ const SchemeCreationForm = {
                 id={`scheme_behavior_${ index }_target_self`}
                 name={`scheme[behavior][${ index }][target]`}
                 value="self"
+                checked={behavior.target == "self"}
               />
               <label for={`scheme_behavior_${ index }_target_other`}>
                 Other
@@ -104,6 +116,7 @@ const SchemeCreationForm = {
                 id={`scheme_behavior_${ index }_target_other`}
                 name={`scheme[behavior][${ index }][target]`}
                 value="other"
+                checked={behavior.target == "other"}
               />
               <label for={`scheme_behavior_${ index }_target_none`}>
                 None
@@ -113,6 +126,7 @@ const SchemeCreationForm = {
                 id={`scheme_behavior_${ index }_target_none`}
                 name={`scheme[behavior][${ index }][target]`}
                 value="none"
+                checked={behavior.target == "none"}
               />
             </div>
             <div class="control-group">
