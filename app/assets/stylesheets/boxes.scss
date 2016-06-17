@@ -1,0 +1,42 @@
+$dark: #333;
+$light: #eee;
+$base: #def;
+$alternate: #fed;
+$neutral: #ddd;
+
+html, body {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  background-color: $dark;
+  color: $light;
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  background-color: $light;
+  color: $dark;
+}
+
+.field {
+  margin: 0.3em;
+}
+
+.context_marker {
+  background-color: $neutral;
+  color: lighten($dark);
+  font-size: 0.7em;
+  margin: 0;
+  padding: 0.1em 0.2em;
+}
+
+.actions {
+  background: $alternate;
+  padding: 0.7em;
+  text-align: right;
+}
+
+@media (min-width: 40em) {
+  .box {
+    margin: 1em;
+  }
+}
