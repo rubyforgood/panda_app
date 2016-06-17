@@ -1,40 +1,43 @@
-$base: #19311e;
-$dark: darken($base, 70);
-$light: lighten($base, 70);
+$base: #2C8682;
+$base-dark: darken($base, 70);
+$base-light: lighten($base, 30);
+
 $alternate: #fc9834;
 $alternate-dark: darken($alternate, 70);
 $alternate-light: lighten($alternate, 30);
+
+$darkened: rgba(0, 0, 0, 0.5);
+$dark: #222;
 $neutral: #ddd;
 
 html, body {
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-  background-color: $neutral;
-  color: $light;
+  background-color: $dark;
+  color: $base-light;
   margin: 0;
   padding: 0;
 }
 
 .context_marker {
   background-color: $neutral;
-  color: $dark;
+  color: $darkened;
   font-size: 0.7em;
   margin: 0;
   padding: 0.1em 0.2em;
 }
 
 .box {
+  color: $dark;
 }
 
 .box-event {
   background-color: $alternate-light;
   border-top: 1px solid $alternate;
-  color: $alternate;
 }
 
 .box-state {
-  background-color: $light;
+  background-color: $base-light;
   border-top: 1px solid $base;
-  color: $base;
 }
 
 .field {
@@ -47,7 +50,7 @@ html, body {
 
 
 .actions {
-  background: $dark;
+  background-color: $darkened;
   padding: 0.7em;
   text-align: right;
 }
