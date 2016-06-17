@@ -23,13 +23,14 @@ We are building a web app for use on phones and tables that will help researcher
 - Ruby 2.3.1
 - Postgresql 9.5
 - bundler gem
-
+- node (4.x or greater)
 
 ### Initial Setup
 - Clone this repo
 ` git clone git@github.com:rubyforgood/panda_app.git`
 - cd into the folder for the repo `cd panda_app`
 - bundle `bundle install`
+- install node packages `npm install`
 - setup the database `rake db:create`
 - To serve the app locally `rails server`
 
