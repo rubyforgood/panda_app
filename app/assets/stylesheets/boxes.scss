@@ -1,24 +1,17 @@
-$dark: #333;
-$light: lighten($dark, 70);
-$base: #def;
-$alternate: #fed;
+$base: #19311e;
+$dark: darken($base, 70);
+$light: lighten($base, 70);
+$alternate: #fc9834;
+$alternate-dark: darken($alternate, 70);
+$alternate-light: lighten($alternate, 30);
 $neutral: #ddd;
 
 html, body {
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-  background-color: $dark;
+  background-color: $neutral;
   color: $light;
   margin: 0;
   padding: 0;
-}
-
-.box {
-  background-color: $light;
-  color: $dark;
-}
-
-.field {
-  margin: 0.3em;
 }
 
 .context_marker {
@@ -29,8 +22,32 @@ html, body {
   padding: 0.1em 0.2em;
 }
 
+.box {
+}
+
+.box-event {
+  background-color: $alternate-light;
+  border-top: 1px solid $alternate;
+  color: $alternate;
+}
+
+.box-state {
+  background-color: $light;
+  border-top: 1px solid $base;
+  color: $base;
+}
+
+.field {
+  margin: 0.3em;
+}
+
+.field_entry {
+  width: 97%;
+}
+
+
 .actions {
-  background: $alternate;
+  background: $dark;
   padding: 0.7em;
   text-align: right;
 }
