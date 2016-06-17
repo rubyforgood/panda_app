@@ -1,0 +1,25 @@
+{
+  "name": "panda_app",
+  "version": "1.0.0",
+  "description": "Panda behavior tracking",
+  "main": "app/assets/javascripts/application.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rubyforgood/panda_app.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/rubyforgood/panda_app/issues"
+  },
+  "homepage": "https://github.com/rubyforgood/panda_app#readme",
+  "devDependencies": {
+    "browserify": "^13.0.1",
+    "browserify-incremental": "^3.1.1",
+    "mithril": "^0.2.5",
+    "mithrilify": "0.0.6"
+  }
+}
