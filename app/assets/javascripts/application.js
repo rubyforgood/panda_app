@@ -1,9 +1,9 @@
-var m = require('mithril');
+var mithril = require('mithril');
 
 var components = {
   SchemeCreationForm: require('./components/scheme_creation_form')
 };
 
-document.querySelectorAll('[data-mithril-component]').forEach((element) => {
-  m.mount(element, components[element.getAttribute('data-mithril-component')]);
-});
+var element = document.querySelector('[data-mithril-component]');
+
+mithril.mount(element, components[element.getAttribute('data-mithril-component')]);

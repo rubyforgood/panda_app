@@ -17,3 +17,6 @@ vendor
 
 # ignore node cache
 node_modules
+
+# ignore RubyMine config
+.idea
