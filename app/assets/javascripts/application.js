@@ -1,4 +1,4 @@
-var m = require('mithril')
+var m = require('mithril');
 
 var Hello = {
   controller: function() {
