@@ -2,11 +2,16 @@ var m = require('mithril')
 
 var Hello = {
   controller: function() {
-    return { name: 'World' };
+    return { name: 'Earth', populace: ['Betsy', 'Julie', 'Nate'] };
   },
 
   view: function(ctrl) {
-    return m('h1', {}, ("Hello " + ctrl.name));
+    return <div>
+      <h1>{`Hello ${ctrl.name}`}</h1>
+      {ctrl.populace.map((person) => {
+        return <p>{person}</p>;
+      })}
+    </div>;
   }
 }
 
