@@ -100,21 +100,30 @@ Create a new observation scheme.
 TODO: What should creating subject groups look like?
 ```
 {
-	scheme: {
-		subjects: [
-			'tarzan', 'jane'
-		],
-		
-		behaviors: [
-			{
-				name: 'pointing',         // string
-				type: 'event',            // string (event|state)
-				target_type: 'other',     // string (other|none|self)
-				group: 'actions',         // string or null
-				mutually_exclusive: false // boolean or null
-			},
-		]
-	}
+  scheme: {
+    subjects_attributes: [
+      { name: 'tarzan', groups: ['humans'] },
+      { name: 'jane', groups: [] }
+    ],
+    behaviors_attributes: [
+      {
+        name: 'aggression',        // string
+        type: 'event',             // string (event|state)
+        target_type: 'other',      // string (other|none|self)
+        group: 'actions',          // string or null
+        mutually_exclusive: false  // boolean or null
+        parent_behavior_name: ''
+      },
+      {
+        name: 'biting',        // string
+        type: 'event',           // string (event|state)
+        target_type: 'other',    // string (other|none|self)
+        group: 'actions',        // string or null
+        mutually_exclusive: false // boolean or null
+        parent_behavior_name: 'aggression'
+      }
+    ]
+  }
 }
 ```
 
