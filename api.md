@@ -142,14 +142,14 @@ Create a new observation.
 ```
 {
   observation: {
-    behavior: 'pointing',
-    type: 'event',
-    duration: 12,
-    subject: 'tarzan',
-    time: '12:03:01'
-    relative_time: '00:01:01',
-    target: 'jane',
-    note: 'something'
+    event_type: 'event', // event or state
+    behavior_name: 'pointing',
+    started_at: '12:03:01'
+    duration_seconds: 12,
+    time_lag_seconds: 15.0,
+    actor_name: 'tarzan',
+    receiver_name: 'jane',
+    notes: 'something'
   }
 }
 ```
