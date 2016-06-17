@@ -149,6 +149,7 @@ Create a new observation.
     time_lag_seconds: 15.0,
     actor_name: 'tarzan',
     receiver_name: 'jane',
+    modifiers: ['happy', 'sad'],
     notes: 'something'
   }
 }
