@@ -1,0 +1,5 @@
+<h1>Observation</h1>
+<%= form_for OpenStruct.new, as: :observation, :url => '/' do |f| %>
+  <p><%= f.label :animal %><br />
+    <%= f.text_field :animal %></p>
+<%- end -%>
