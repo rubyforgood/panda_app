@@ -12,7 +12,7 @@ Request:
   methodology: {
     observation_type: 'focal_animal',
     focal_animal: 'tarzan',
-    interval: '100'
+    interval_seconds: '100'
   }
 
   note: 'thing',
