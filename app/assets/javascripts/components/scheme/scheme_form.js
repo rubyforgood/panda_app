@@ -50,8 +50,8 @@ const SchemeCreationForm = {
       </p>
       <fieldset class="field">
         <legend>Subjects
-          <a class="button button-add" onclick={() => { ctrl.scheme.addSubject() } }>Add</a>
         </legend>
+        <p class="list-control"><a class="button button-add" onclick={() => { ctrl.scheme.addSubject() } }>Add</a></p>
         {ctrl.scheme.subjects.map((subject, index) => {
           var component = subject.editing ? SubjectForm : Subject;
           return mithril.component(component, {subject: subject, index: index})
@@ -60,24 +60,15 @@ const SchemeCreationForm = {
       <fieldset class="field">
         <legend>Subject Groups
         </legend>
-        <a class="button button-add" onclick={() => ctrl.scheme.addSubjectGroup()}>Add</a>
+        <p class="list-control"><a class="button button-add" onclick={() => ctrl.scheme.addSubjectGroup()}>Add</a></p>
         {ctrl.scheme.subjects.map((subject, index) => {
           return mithril.component(Subject, {subject: subject, index: index})
         })}
       </fieldset>
       <fieldset class="field">
-        <legend>Subject Groups
-          <a class="button button-add" onClick="function(){ this.add('subjects') }">Add</a>
-        </legend>
-        {ctrl.scheme.subjects.map((subject, index) => {
-          return mithril.component(Subject, {subject: subject, index: index})
-        })}
-      </fieldset>
-      <fieldset>
         <legend>Behaviors
-          <a class="button button-add" onclick={() => ctrl.scheme.addBehavior()}>Add</a>
         </legend>
-        <a class="button button-add" onclick="function(){ this.add('behaviors') }">Add</a>
+        <p class="list-control"><a class="button button-add" onclick={() => ctrl.scheme.addBehavior()}>Add</a></p>
         {ctrl.scheme.behaviors.map((behavior, index) => {
           var component = behavior.editing ? BehaviorForm : Behavior;
           return mithril.component(component, {behavior: behavior, index: index});

@@ -22,3 +22,4 @@ node_modules
 # ignore various editor stuff
 *.swp
 .idea
+.byebug_history

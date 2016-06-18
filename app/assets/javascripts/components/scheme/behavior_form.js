@@ -1,11 +1,22 @@
+var m = require('mithril');
+
+const RadioGroup = require('../inputs/radio_group.js');
+
 const BehaviorForm = {
   controller: function(args) {
     // change to args.behavior || new Behavior() when model created
     // TODO: how to account for parent/child group?
-    return {
+    var ctrl = {
       behavior: args.behavior,
-      index: args.index
+      index: args.index,
     }
+    ctrl.selected_type = function(key) {
+      return this.behavior.type == key
+    }.bind(ctrl);
+    ctrl.selected_target = function(key){
+      return this.behavior.target == key
+    }.bind(ctrl);
+    return ctrl;
   },
   view: function(ctrl) {
     return <div>
@@ -21,67 +32,34 @@ const BehaviorForm = {
           onchange={(e)=> { ctrl.behavior.name = e.target.value }}
         />
       </div>
-      <div class="control-group">
-        <label>Type</label>
-        <label for={`scheme_behavior_${ ctrl.index }_type_state`}>
-          State
-        </label>
-        <input
-          type="radio"
-          id={`scheme_behavior_${ ctrl.index }_type_state`}
-          name={`scheme[behavior][${ ctrl.index }][type]`}
-          value="state"
-          checked={ctrl.behavior.type == "state"}
-          onchange={(e)=> { if(e.target.checked) { ctrl.behavior.type = e.target.value }}}
+
+      <RadioGroup text="Type"
+          namespace="scheme"
+          item="behavior"
+          attribute="type"
+          index={ctrl.index}
+          collection={[
+            ['State','state'],
+            ['Event','event']
+          ]}
+          checked={ ctrl.selected_type }
+          update={ (newValue) => { ctrl.behavior.type = newValue } }
         />
-        <label for={`scheme_behavior_${ ctrl.index }_type_event`}>
-          Event
-        </label>
-        <input
-          type="radio"
-          id={`scheme_behavior_${ ctrl.index }_type_event`}
-          name={`scheme[behavior][${ ctrl.index }][type]`}
-          value="event"
-          checked={ctrl.behavior.type == "event"}
-          onchange={(e)=> { if(e.target.checked) { ctrl.behavior.type = e.target.value }}}
+
+      <RadioGroup text="Target Type"
+          namespace="scheme"
+          item="behavior"
+          attribute="target"
+          index={ctrl.index}
+          collection={[
+            ['Self','self'],
+            ['Other','other'],
+            ['None','none']
+          ]}
+          checked={ ctrl.selected_target }
+          update={ (newValue) => { ctrl.behavior.target = newValue } }
         />
-      </div>
-      <div class="control-group">
-        <label>Target Type</label>
-        <label for={`scheme_behavior_${ ctrl.index }_target_self`}>
-          Self
-        </label>
-        <input
-          type="radio"
-          id={`scheme_behavior_${ ctrl.index }_target_self`}
-          name={`scheme[behavior][${ ctrl.index }][target]`}
-          value="self"
-          checked={ctrl.behavior.target == "self"}
-          onchange={(e)=> { if(e.target.checked) { ctrl.behavior.target = e.target.value }}}
-        />
-        <label for={`scheme_behavior_${ ctrl.index }_target_other`}>
-          Other
-        </label>
-        <input
-          type="radio"
-          id={`scheme_behavior_${ ctrl.index }_target_other`}
-          name={`scheme[behavior][${ ctrl.index }][target]`}
-          value="other"
-          checked={ctrl.behavior.target == "other"}
-          onchange={(e)=> { if(e.target.checked) { ctrl.behavior.target = e.target.value }}}
-        />
-        <label for={`scheme_behavior_${ ctrl.index }_target_none`}>
-          None
-        </label>
-        <input
-          type="radio"
-          id={`scheme_behavior_${ ctrl.index }_target_none`}
-          name={`scheme[behavior][${ ctrl.index }][target]`}
-          value="none"
-          checked={ctrl.behavior.target == "none"}
-          onchange={(e)=> { if(e.target.checked) { ctrl.behavior.target = e.target.value }}}
-        />
-      </div>
+
       <div class="control-group">
         <label for={`scheme_behavior_${ ctrl.index }_mutually_exclusive`}>
           Mutually Exclusive?

@@ -1,3 +1,6 @@
+const m = require('mithril')
+const EditableItem = require('./editable_item.js')
+
 const Behavior = {
   controller: function (args) {
     return {
@@ -6,10 +9,12 @@ const Behavior = {
     }
   },
   view: function (ctrl) {
-    return <div class="control-group">
-      <div><a class='button button-remove'>-</a> {ctrl.behavior.name}</div>
-      <span>Type: {ctrl.behavior.type} - ME: {ctrl.behavior.mutually_exclusive} - Target: {ctrl.behavior.target}</span>
-    </div>
+    var text = `Type: ${ctrl.behavior.type} - ME: ${ctrl.behavior.mutually_exclusive} - Target: ${ctrl.behavior.target}`
+    return <EditableItem
+      namespace={ctrl.behavior.type}
+      item={ctrl.behavior.name}
+      index={ctrl.index}
+      text={text} />
   }
 };
 
