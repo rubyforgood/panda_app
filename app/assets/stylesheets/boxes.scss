@@ -90,17 +90,18 @@ html, body {
 }
 
 .list-control {
+  border-bottom: 1px solid $neutral;
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin: 0;
-  padding: 0 0.3em;
+  padding: 0 0.3em 0.5em;
 }
 
 .button {
   display: inline-block;
-  padding: 0.2em 0.4em;
-  border: 1px solid;
+  padding: 0.2em 0.6em;
+  border: 1px solid $base-dark;
   border-radius: 3px;
   text-decoration: none;
 }
