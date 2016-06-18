@@ -7,9 +7,8 @@ const Subject = {
   },
   view: function (ctrl) {
     return <div class={`control-group scheme_subject_${ctrl.index}`}>
-      <button>-</button>
-      <span>{ ctrl.subject }</span>
-      <button style="float: right;">edit</button>
+      <a><span>{ ctrl.subject }</span></a>
+      <a class='button button-remove destructive'>-</a>
     </div>
   }
 };
