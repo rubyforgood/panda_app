@@ -23,14 +23,37 @@ const SchemeCreationForm = {
         name: "an amazing scheme",
         locked: true,
         subjects: ['Bob', 'Mary', 'Sponge'],
+        subject_groups: [
+          {
+            name: 'males',
+            members: ['Bob'] // how to link this with 
+          }
+        ],
         behaviors: [
           {
             name: 'walking',
             type: 'state',
             mutually_exclusive: true,
-            target: 'none'
+            target: 'none',
+            editing: false
+          }
+        ],
+        modifiers: [
+          {
+            name: '',
+            associated_behavior: ''
           }
         ]
+      },
+      addBehavior: () => {
+        console.log(this);
+        this.scheme.behaviors.push({
+          name: '',
+          type: 'state',
+          mutually_exclusive: true,
+          target: 'none',
+          editing: true
+        });
       }
     };
   },
@@ -67,11 +90,20 @@ const SchemeCreationForm = {
         })}
       </fieldset>
       <fieldset>
+        <legend>Subject Groups
+          <a class="button button-add" onClick="function(){ this.add('subjects') }">Add</a>
+        </legend>
+        {ctrl.scheme.subjects.map((subject, index) => {
+          return mithril.component(Subject, {subject: subject, index: index})
+        })}
+      </fieldset>
+      <fieldset>
         <legend>Behaviors
-          <a class="button button-add" onclick="function(){ this.add('behaviors') }">Add</a>
+          <a class="button button-add" onClick={ctrl.addBehavior}>Add</a>
         </legend>
         {ctrl.scheme.behaviors.map((behavior, index) => {
-          return mithril.component(Behavior, {behavior: behavior, index: index})
+          var component = behavior.editing ? BehaviorForm : Behavior;
+          return mithril.component(component, {behavior: behavior, index: index});
         })}
       </fieldset>
     </form>;
