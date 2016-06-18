@@ -17,18 +17,21 @@ const SubjectForm = {
         name="scheme[subject][name]"
         value={ctrl.subject.name}
       />
-      {ctrl.subjectGroups.map((group, index) => {
-        return <label>
-          <input
-            type="checkbox"
-            value={group.name}
-            id={`scheme_subject_group_${index}`}
-            name="scheme[subject_group][name]"
-            checked={ctrl.subject.groups.includes(group)}
-          />
-          {group.name}
-        </label>
-      })}
+      <div class="control-group">
+        Groups:
+        {ctrl.subjectGroups.map((group, index) => {
+          return <label>
+            <input
+              type="checkbox"
+              value={group.name}
+              id={`scheme_subject_group_${index}`}
+              name="scheme[subject_group][name]"
+              checked={ctrl.subject.groups.includes(group)}
+            />
+            {group.name}
+          </label>
+        })}
+      </div>
       <button>save</button>
     </div>
   }

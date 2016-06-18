@@ -1,7 +1,7 @@
 const SubjectGroupForm = {
   controller: function (args) {
     return {
-      subject: args.subject,
+      subjectGroup: args.subjectGroup,
       index: args.index
     }
   },
@@ -14,7 +14,7 @@ const SubjectGroupForm = {
         type="text"
         id="scheme_subject_group_name"
         name="scheme[subject_group][name]"
-        value={ctrl.subject.name}
+        value={ctrl.subjectGroup.name}
       />
       <button>save</button>
     </div>;

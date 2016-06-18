@@ -2,15 +2,16 @@ var mithril = require('mithril');
 const Behavior = require('./behavior');
 const BehaviorForm = require('./behavior_form');
 const Subject = require('./subject');
+const EditableItem = require('./editable_item.js');
 const SubjectForm = require('./subject_form');
 const SubjectGroupForm = require('./subject_group_form');
 const SchemeRepository = require('../../repositories/scheme_repository');
 
 const SchemeCreationForm = {
-  controller: function() {
-    var ctrl = { scheme: SchemeRepository.new() };
-    ctrl.parentBehaviors = function() {
-      this.scheme.behaviors.filter(function(behavior) {
+  controller: function () {
+    var ctrl = {scheme: SchemeRepository.new()};
+    ctrl.parentBehaviors = function () {
+      this.scheme.behaviors.filter(function (behavior) {
         if (behavior.parent && behavior.parent.length > 0) {
           return behavior
         }
@@ -51,21 +52,28 @@ const SchemeCreationForm = {
         </div>
       </p>
       <fieldset class="field">
-        <legend>Subject Groups
-        </legend>
+        <legend>Subject Groups</legend>
         <p class="list-control">
-          <a class="button button-add" onclick={() => { ctrl.scheme.addSubjectGroup() }}>Add</a>
+          <a class="button button-add" onclick={() => ctrl.scheme.addSubjectGroup()}>Add</a>
         </p>
-        {ctrl.scheme.subjects.map((subject, index) => {
-          return mithril.component(SubjectGroupForm, {
-            subject: subject,
-            index: index
-          })
+        {ctrl.scheme.subjectGroups.map((group, index) => {
+          if (group.editing) {
+            return mithril.component(SubjectGroupForm, {
+              subjectGroup: group,
+              index: index
+            })
+          } else {
+            return mithril.component(EditableItem, {
+              namespace: 'scheme',
+              item: 'subject_group',
+              index: index,
+              text: group.name
+            })
+          }
         })}
       </fieldset>
       <fieldset class="field">
-        <legend>Subjects
-        </legend>
+        <legend>Subjects</legend>
         <p class="list-control">
           <a class="button button-add" onclick={() => ctrl.scheme.addSubject()}>Add</a>
         </p>
@@ -79,8 +87,7 @@ const SchemeCreationForm = {
         })}
       </fieldset>
       <fieldset class="field">
-        <legend>Behaviors
-        </legend>
+        <legend>Behaviors</legend>
         <p class="list-control">
           <a class="button button-add" onclick={() => ctrl.scheme.addBehavior()}>Add</a>
         </p>
