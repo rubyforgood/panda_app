@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe SchemesController, type: :controller do
+  before do
+    sign_in FactoryGirl.create(:user)
+  end
+
   def uuid
     SecureRandom.uuid
   end

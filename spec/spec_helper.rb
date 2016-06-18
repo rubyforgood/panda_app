@@ -89,6 +89,4 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-  config.include FactoryGirl::Syntax::Methods
-  config.use_transactional_fixtures = true
 end
