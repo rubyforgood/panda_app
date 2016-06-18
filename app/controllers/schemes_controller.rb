@@ -3,10 +3,10 @@ class SchemesController < ApplicationController
 
   def create
     @scheme = Scheme.build_with_associations(
-      scheme_params.merge(user_id: 12),
-        new_associations: {
-          subjects: subject_params,
-          behaviors: behaviors_params })
+                          scheme_params.merge(user_id: current_user.id),
+                          new_associations: {
+                            subjects: subject_params,
+                            behaviors: behaviors_params })
 
     if @scheme.save
       head 201
