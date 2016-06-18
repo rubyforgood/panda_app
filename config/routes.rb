@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :schemes, only: [:create, :show, :update, :index]
+    resources :observation_sessions, only: [:create, :show, :index]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
