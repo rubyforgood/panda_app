@@ -26,7 +26,7 @@ const SchemeCreationForm = {
         subject_groups: [
           {
             name: 'males',
-            members: ['Bob'] // how to link this with 
+            members: ['Bob'] // how to link this with
           }
         ],
         behaviors: [
@@ -77,24 +77,24 @@ const SchemeCreationForm = {
       </p>
       <fieldset class="field">
         <legend>Subjects
-          <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
         </legend>
+        <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
         {ctrl.scheme.subjects.map((subject, index) => {
           return mithril.component(Subject, {subject: subject, index: index})
         })}
       </fieldset>
       <fieldset class="field">
         <legend>Subject Groups
-          <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
         </legend>
+        <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
         {ctrl.scheme.subjects.map((subject, index) => {
           return mithril.component(Subject, {subject: subject, index: index})
         })}
       </fieldset>
       <fieldset class="field">
         <legend>Behaviors
-          <a class="button button-add" onclick="function(){ this.add('behaviors') }">Add</a>
         </legend>
+        <a class="button button-add" onclick="function(){ this.add('behaviors') }">Add</a>
         {ctrl.scheme.behaviors.map((behavior, index) => {
           return mithril.component(Behavior, {behavior: behavior, index: index})
         })}

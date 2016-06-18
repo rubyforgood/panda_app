@@ -16,15 +16,15 @@ $lightened: rgba(255, 255, 255, 0.5);
 .in-process {
   background-size: 30px 30px;
   background-image: linear-gradient(
-    45deg, 
-    rgba(black, 0.1)  25%, 
-    transparent       25%, 
-    transparent       50%, 
-    rgba(black, 0.1)  50%, 
-    rgba(black, 0.1)  75%, 
-    transparent       75%, 
+    45deg,
+    rgba(black, 0.1)  25%,
+    transparent       25%,
+    transparent       50%,
+    rgba(black, 0.1)  50%,
+    rgba(black, 0.1)  75%,
+    transparent       75%,
     transparent
-  ); 
+  );
 }
 
 html, body {
@@ -85,6 +85,14 @@ html, body {
   color: white;
 }
 
+.button-remove {
+  background-color: red;
+}
+
+.button-edit {
+  background-color: yellow;
+}
+
 .field {
   margin: 0.3em;
 }
@@ -104,7 +112,7 @@ legend {
   width: 100%;
   margin: 0;
   padding: 0;
-  
+
 }
 
 .actions {
