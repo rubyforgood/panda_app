@@ -2,12 +2,13 @@
 
 All requests can be authenticated by a signed cookie with the session ID.
 
-### POST /session
+### POST /observation_sessions
 Start a new observation session.
 
 Request:
 ```
 {
+  session_id: uuid,
   name: 'name',
   observation_method: 'focal_animal',
   focal_animal_name: 'tarzan',
@@ -15,12 +16,12 @@ Request:
   session_interval_seconds: '100',
   session_interval_duration: '15000',
  
-  scheme_id: 1234,
+  scheme_id: uuid,
   notes: 'thing',
 
   // extra metadata
-  location: {
-    lat, long
+  metadata: {
+  	anything, will be stored as json
   }
 }
 ```
@@ -40,7 +41,7 @@ or
 }
 ```
 
-### PATCH /session
+### PATCH /observation_sessions/:id
 Start or finish the session.
 
 ```
@@ -51,12 +52,12 @@ Start or finish the session.
 }
 ```
 
-### GET /:user_id/schemes
+### GET /schemes
 Get the schemes created by this user
 ```
 {
   schemes: [
-    { name: 'scheme1', id: 1 }
+    { name: 'scheme1', id: uuid }
   ]
 }
 ```
@@ -66,12 +67,12 @@ Get the active scheme for this observation session.
 ```
 {
   subjects: [
-    { uuid: 'abcd-1234-beef', name: 'tarzan', groups: ['humans'] },
-    { uuid: 'abcd-1234-beed', name: 'jane', groups: [] }
+    { id: 'abcd-1234-beef', name: 'tarzan', groups: ['humans'] },
+    { id: 'abcd-1234-beed', name: 'jane', groups: [] }
   ],
   behaviors: [
     {
-      uuid: 'abcd-1234',
+      id: 'abcd-1234',
       name: 'walking',
       type: 'state'
       parent_behavior_id: null,
@@ -80,7 +81,7 @@ Get the active scheme for this observation session.
       modifiers: ['peaceful', 'agitated']
     },
     {
-      uuid: 'abcd-1234',
+      id: 'abcd-1234',
       name: 'standing',
       type: 'state'
       exclusive: true,
@@ -106,12 +107,12 @@ Create a new observation scheme.
   scheme: {
     uuid: '1234-abcd',
     subjects_attributes: [
-      { uuid: 'abcd-1234', name: 'tarzan', groups: ['humans'] },
-      { uuid: 'abcd-1234', name: 'jane', groups: [] }
+      { id: 'abcd-1234', name: 'tarzan', groups: ['humans'] },
+      { id: 'abcd-1234', name: 'jane', groups: [] }
     ],
     behaviors_attributes: [
       {
-        uuid: 'abcd-1234',
+        id: 'abcd-1234',
         name: 'aggression',        // string
         type: 'event',             // string (event|state)
         target_type: 'other',      // string (other|none|self)
@@ -131,28 +132,29 @@ Create a new observation scheme.
 ```
 
 ### DELETE /scheme/:id
-Delete a schema
+Delete a scheme
 
-### POST /session/observations
+### POST /observations
 Create a new observation.
 ```
 {
   observation: {
-    uuid: 'abcd-1234',
+    id: uuid,
+    observation_session_id: uuid,
     event_type: 'event', // event or state
-    behavior_name: 'pointing',
+    behavior_id: uuid,
     started_at: '12:03:01'
     duration_seconds: 12,
     time_lag_seconds: 15.0,
-    actor_uuid: uuid,
-    receiver_uuid: uuid,
+    actor_id: uuid,
+    receiver_id: uuid,
     modifiers: ['happy', 'sad'],
     notes: 'something'
   }
 }
 ```
 
-### POST /session/export
+### POST /observation_sessions/:id/export
 Export your results to a CSV and email it.
 
 Request:
