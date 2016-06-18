@@ -23,12 +23,24 @@ const SchemeCreationForm = {
         name: "an amazing scheme",
         locked: true,
         subjects: ['Bob', 'Mary', 'Sponge'],
+        subject_groups: [
+          {
+            name: 'males',
+            members: ['Bob'] // how to link this with 
+          }
+        ],
         behaviors: [
           {
             name: 'walking',
             type: 'state',
             mutually_exclusive: true,
             target: 'none'
+          }
+        ],
+        modifiers: [
+          {
+            name: '',
+            associated_behavior: ''
           }
         ]
       }
@@ -60,6 +72,14 @@ const SchemeCreationForm = {
       </div>
       <fieldset>
         <legend>Subjects
+          <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
+        </legend>
+        {ctrl.scheme.subjects.map((subject, index) => {
+          return mithril.component(Subject, {subject: subject, index: index})
+        })}
+      </fieldset>
+      <fieldset>
+        <legend>Subject Groups
           <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
         </legend>
         {ctrl.scheme.subjects.map((subject, index) => {
