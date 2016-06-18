@@ -53,8 +53,9 @@ const SchemeCreationForm = {
       <fieldset class="field">
         <legend>Subject Groups
         </legend>
-        <a class="button button-add" onclick={() => ctrl.scheme.addSubjectGroup()}>Add</a>
-        <p class="list-control"><a class="button button-add" onclick={() => { ctrl.scheme.addSubject() } }>Add</a></p>
+        <p class="list-control">
+          <a class="button button-add" onclick={() => { ctrl.scheme.addSubjectGroup() }}>Add</a>
+        </p>
         {ctrl.scheme.subjects.map((subject, index) => {
           return mithril.component(SubjectGroupForm, {
             subject: subject,
@@ -65,8 +66,9 @@ const SchemeCreationForm = {
       <fieldset class="field">
         <legend>Subjects
         </legend>
-        <a class="button button-add" onclick={() => { ctrl.scheme.addSubject() } }>Add</a>
-        <p class="list-control"><a class="button button-add" onclick={() => ctrl.scheme.addSubjectGroup()}>Add</a></p>
+        <p class="list-control">
+          <a class="button button-add" onclick={() => ctrl.scheme.addSubject()}>Add</a>
+        </p>
         {ctrl.scheme.subjects.map((subject, index) => {
           var component = subject.editing ? SubjectForm : Subject;
           return mithril.component(component, {
@@ -79,7 +81,9 @@ const SchemeCreationForm = {
       <fieldset class="field">
         <legend>Behaviors
         </legend>
-        <p class="list-control"><a class="button button-add" onclick={() => ctrl.scheme.addBehavior()}>Add</a></p>
+        <p class="list-control">
+          <a class="button button-add" onclick={() => ctrl.scheme.addBehavior()}>Add</a>
+        </p>
         {ctrl.scheme.behaviors.map((behavior, index) => {
           var component = behavior.editing ? BehaviorForm : Behavior;
           return mithril.component(component, {
