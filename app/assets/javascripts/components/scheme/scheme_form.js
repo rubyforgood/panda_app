@@ -69,9 +69,8 @@ const SchemeCreationForm = {
       </p>
       <fieldset class="field">
         <legend>Subjects
-          <a class="button button-add" onclick={() => { console.log('clicked'); ctrl.scheme.addBlankSubject() } }>Add</a>
         </legend>
-        <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
+        <a class="button button-add" onclick={() => { console.log('clicked'); ctrl.scheme.addBlankSubject() } }>Add</a>
         {ctrl.scheme.subjects.map((subject, index) => {
           return mithril.component(Subject, {subject: subject, index: index})
         })}
@@ -79,22 +78,14 @@ const SchemeCreationForm = {
       <fieldset class="field">
         <legend>Subject Groups
         </legend>
-        <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
-        {ctrl.scheme.subjects.map((subject, index) => {
-          return mithril.component(Subject, {subject: subject, index: index})
-        })}
-      </fieldset>
-      <fieldset class="field">
-        <legend>Subject Groups
-          <a class="button button-add" onClick="function(){ this.add('subjects') }">Add</a>
-        </legend>
+        <a class="button button-add" onclick={() => { console.log('clicked'); ctrl.scheme.addBlankSubject() } }>Add</a>
         {ctrl.scheme.subjects.map((subject, index) => {
           return mithril.component(Subject, {subject: subject, index: index})
         })}
       </fieldset>
       <fieldset>
         <legend>Behaviors
-          <a class="button button-add" onClick={ctrl.addBehavior}>Add</a>
+          <a class="button button-add" onclick={ctrl.addBehavior}>Add</a>
         </legend>
         <a class="button button-add" onclick="function(){ this.add('behaviors') }">Add</a>
         {ctrl.scheme.behaviors.map((behavior, index) => {
