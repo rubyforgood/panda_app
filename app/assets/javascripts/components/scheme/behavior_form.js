@@ -69,7 +69,7 @@ const BehaviorForm = {
           id={`scheme_behavior_${ ctrl.index }_mutually_exclusive`}
           name={`scheme[behavior][${ ctrl.index }][mutually_exclusive]`}
           checked={ctrl.behavior.mutually_exclusive}
-          onchange={(e)=> { ctrl.behavior.mutually_exclusive = e.target.value }}
+          onchange={(e)=> { ctrl.behavior.mutually_exclusive = e.target.checked }}
         />
       </div>
     </div>

@@ -43,7 +43,7 @@ const SchemeRepository = {
           name:   scheme.name,
           locked: scheme.locked,
           behaviors_attributes: scheme.behaviors,
-          subjects_attributes: [],
+          subjects_attributes: scheme.subjects,
 
         }
       };

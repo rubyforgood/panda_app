@@ -44,7 +44,7 @@ const SchemeCreationForm = {
             id="scheme_locked"
             name="scheme[locked]"
             checked={ctrl.scheme.locked}
-            onchange={(e)=> { ctrl.scheme.locked = e.target.value }}
+            onchange={(e)=> { ctrl.scheme.locked = e.target.checked }}
           />
         </div>
       </p>
@@ -78,7 +78,7 @@ const SchemeCreationForm = {
       <input
         type='submit'
         value='Save'
-        onclick={ () => { ctrl.save() } }
+        onclick={ (e) => { e.preventDefault(); ctrl.save(); } }
       />
     </form>;
   }
