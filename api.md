@@ -9,13 +9,14 @@ Request:
 ```
 {
   name: 'name',
-  methodology: {
-    observation_type: 'focal_animal',
-    focal_animal: 'tarzan',
-    interval_seconds: '100'
-  }
-
-  note: 'thing',
+  observation_method: 'focal_animal',
+  focal_animal_name: 'tarzan',
+  focal_behavior_id: null,
+  session_interval_seconds: '100',
+  session_interval_duration: '15000',
+ 
+  scheme_id: 1234,
+  notes: 'thing',
 
   // extra metadata
   location: {
@@ -60,34 +61,37 @@ Get the schemes created by this user
 }
 ```
 
-### GET /session/scheme
+### GET /schemes/:id
 Get the active scheme for this observation session.
 ```
 {
   subjects: [
-    { name: 'tarzan', groups: ['humans'] },
-    { name: 'jane', groups: [] }
+    { uuid: 'abcd-1234-beef', name: 'tarzan', groups: ['humans'] },
+    { uuid: 'abcd-1234-beed', name: 'jane', groups: [] }
   ],
   behaviors: [
     {
+      uuid: 'abcd-1234',
       name: 'walking',
       type: 'state'
-      group: 'posture',
+      category: 'posture',
       target: 'none',
       exclusive: false,
       modifiers: ['peaceful', 'agitated']
     },
     {
+      uuid: 'abcd-1234',
       name: 'standing',
       type: 'state'
-      group: 'posture',
+      category: 'posture',
       exclusive: true,
       modifiers: ['peaceful', 'agitated']
     },
     {
+      uuid: 'abcd-1234',
       name: 'pointing',
       type: 'event',
-      group: 'actions',
+      category: 'actions',
       modifiers: []
     }
   ]
@@ -97,58 +101,53 @@ Get the active scheme for this observation session.
 ### POST/PUT /scheme
 Create a new observation scheme.
 
-TODO: What should creating subject groups look like?
 ```
 {
   scheme: {
+    uuid: '1234-abcd',
     subjects_attributes: [
-      { name: 'tarzan', groups: ['humans'] },
-      { name: 'jane', groups: [] }
+      { uuid: 'abcd-1234', name: 'tarzan', groups: ['humans'] },
+      { uuid: 'abcd-1234', name: 'jane', groups: [] }
     ],
     behaviors_attributes: [
       {
+        uuid: 'abcd-1234',
         name: 'aggression',        // string
         type: 'event',             // string (event|state)
         target_type: 'other',      // string (other|none|self)
-        group: 'actions',          // string or null
+        category: 'actions',          // string or null
         mutually_exclusive: false  // boolean or null
-        parent_behavior_name: ''
+        parent_behavior: null // or uuid
       },
       {
         name: 'biting',        // string
         type: 'event',           // string (event|state)
         target_type: 'other',    // string (other|none|self)
-        group: 'actions',        // string or null
+        category: 'actions',        // string or null
         mutually_exclusive: false // boolean or null
-        parent_behavior_name: 'aggression'
+        parent_behavior: uuid
       }
     ]
   }
 }
 ```
 
-### DELETE /scheme
+### DELETE /scheme/:id
 Delete a schema
-
-### PATCH /session/scheme/behaviors/:name
-Update a defined behavior.
-
-```
-request omitted
-```
 
 ### POST /session/observations
 Create a new observation.
 ```
 {
   observation: {
+    uuid: 'abcd-1234',
     event_type: 'event', // event or state
     behavior_name: 'pointing',
     started_at: '12:03:01'
     duration_seconds: 12,
     time_lag_seconds: 15.0,
-    actor_name: 'tarzan',
-    receiver_name: 'jane',
+    actor_uuid: uuid,
+    receiver_uuid: uuid,
     modifiers: ['happy', 'sad'],
     notes: 'something'
   }
