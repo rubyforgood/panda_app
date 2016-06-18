@@ -2,25 +2,14 @@ var mithril = require('mithril');
 const Behavior = require('./behavior');
 const BehaviorForm = require('./behavior_form');
 const Subject = require('./subject');
+const SchemeRepository = require('../../repositories/scheme_repository');
 
 const SchemeCreationForm = {
   controller: function() {
-    this.add = function(key) {
-      // TODO: is there a meta way of doing this?
-      // this.scheme[key].push(new key.to_model);
-      if (key == 'behaviors') {
-        this.scheme.behaviors.push(new Behavior());
-        // <BehaviorForm /> append to dom
-      } else if (key == 'subjects') {
-        this.scheme.subjects.push(new Subject());
-        //  <SubjectForm /> append to dom
-      }
-    };
-
     return {
       // scheme: new Scheme()
       // TODO: set this to be reused for new or edit
-      scheme: {
+      scheme: SchemeRepository.new({
         name: "an amazing scheme",
         locked: true,
         subjects: ['Bob', 'Mary', 'Sponge'],
@@ -45,16 +34,7 @@ const SchemeCreationForm = {
             associated_behavior: ''
           }
         ]
-      },
-      addBehavior: () => {
-        this.scheme.behaviors.unshift({
-          name: '',
-          type: 'state',
-          mutually_exclusive: true,
-          target: 'none',
-          editing: true
-        });
-      }
+      })
     };
   },
 
@@ -89,7 +69,7 @@ const SchemeCreationForm = {
       <fieldset class="field">
         <legend>Subjects
         </legend>
-        <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
+        <a class="button button-add" onclick={() => ctrl.scheme.addSubject()}>Add</a>
         {ctrl.scheme.subjects.map((subject, index) => {
           return mithril.component(Subject, {subject: subject, index: index})
         })}
@@ -97,14 +77,14 @@ const SchemeCreationForm = {
       <fieldset class="field">
         <legend>Subject Groups
         </legend>
-        <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
+        <a class="button button-add" onclick={() => ctrl.scheme.addSubjectGroup()}>Add</a>
         {ctrl.scheme.subjects.map((subject, index) => {
           return mithril.component(Subject, {subject: subject, index: index})
         })}
       </fieldset>
       <fieldset>
         <legend>Behaviors
-          <a class="button button-add" onclick={() => ctrl.addBehavior()}>Add</a>
+          <a class="button button-add" onclick={() => ctrl.scheme.addBehavior()}>Add</a>
         </legend>
         {ctrl.scheme.behaviors.map((behavior, index) => {
           var component = behavior.editing ? BehaviorForm : Behavior;

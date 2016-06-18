@@ -7,7 +7,8 @@ Object.values = function(obj) {
     }
   }
   return collect;
-}
+};
+
 const SchemeRepository = {
   all: function() {
     return Object.values(SchemeRepository.cache);
@@ -23,13 +24,13 @@ const SchemeRepository = {
 
   new: function(params) {
     var scheme = new Scheme(params);
-    scheme.addBlankSubject();
-    scheme.addBlankBehavior();
+    scheme.addSubject();
+    scheme.addBehavior();
     SchemeRepository.cache[scheme.uuid] = scheme;
     return scheme;
   },
 
   cache: {}
-}
+};
 
 module.exports = SchemeRepository;

@@ -17,7 +17,7 @@ const Scheme = function(params) {
     this.subjects.forEach((subject) => {
       subject.uuid = subject.uuid || uuid.v1();
     })
-  }
+  };
 
   this.addSubject = (() => {
     this.subjects.unshift({
@@ -30,10 +30,10 @@ const Scheme = function(params) {
   this.addBehavior = (() => {
     this.behaviors.unshift({
       uuid: uuid.v1(),
-      name: ""
-
+      name: "",
+      editing: true
     });
   });
-}
+};
 
 module.exports = Scheme;
