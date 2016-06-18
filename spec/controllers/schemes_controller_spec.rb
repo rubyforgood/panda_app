@@ -1,12 +1,8 @@
 require 'rails_helper'
 
-describe SchemesController, type: :controller do
+describe Api::SchemesController, type: :controller do
   before do
     sign_in FactoryGirl.create(:user)
-  end
-
-  def uuid
-    SecureRandom.uuid
   end
 
   let(:request_body) do
@@ -16,14 +12,14 @@ describe SchemesController, type: :controller do
         name: 'Gorillas',
         subjects_attributes: [
           {
-            id: uuid,
+            id: make_uuid,
             name: 'Ronnie',
             groups: ['males']
           }
         ],
         behaviors_attributes: [
           {
-            id: uuid,
+            id: make_uuid,
             name: 'Walking',
             type: 'state',
             target_type: 'self',
@@ -35,7 +31,7 @@ describe SchemesController, type: :controller do
   end
 
   describe '#create' do
-    let(:scheme_id) { SecureRandom.uuid }
+    let(:scheme_id) { make_uuid }
 
     subject { post :create, request_body }
     let(:scheme) { assigns(:scheme) }
