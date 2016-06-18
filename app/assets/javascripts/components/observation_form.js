@@ -35,6 +35,7 @@ const FocusAnimal = {
           type: 'state',
           mutually_exclusive: true,
           target: 'target',
+          available_modifiers: [],
         },
         {
           id: 3,
