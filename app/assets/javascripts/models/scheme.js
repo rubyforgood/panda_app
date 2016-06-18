@@ -23,7 +23,8 @@ const Scheme = function(params) {
     this.subjects.unshift({
       uuid: uuid.v1(),
       name: "",
-      groups: []
+      groups: [],
+      editing: true
     });
   });
 

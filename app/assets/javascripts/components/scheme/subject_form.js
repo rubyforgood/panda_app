@@ -15,7 +15,7 @@ const SubjectForm = {
         type="text"
         id="scheme_subject"
         name="scheme[subject]"
-        value={ctrl.subject}
+        value={ctrl.subject.name}
       />
       <button>save</button>
     </div>

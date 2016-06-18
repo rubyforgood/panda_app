@@ -2,6 +2,7 @@ var mithril = require('mithril');
 const Behavior = require('./behavior');
 const BehaviorForm = require('./behavior_form');
 const Subject = require('./subject');
+const SubjectForm = require('./subject_form');
 const SchemeRepository = require('../../repositories/scheme_repository');
 
 const SchemeCreationForm = {
@@ -9,32 +10,7 @@ const SchemeCreationForm = {
     return {
       // scheme: new Scheme()
       // TODO: set this to be reused for new or edit
-      scheme: SchemeRepository.new({
-        name: "an amazing scheme",
-        locked: true,
-        subjects: ['Bob', 'Mary', 'Sponge'],
-        subject_groups: [
-          {
-            name: 'males',
-            members: ['Bob'] // how to link this with
-          }
-        ],
-        behaviors: [
-          {
-            name: 'walking',
-            type: 'state',
-            mutually_exclusive: true,
-            target: 'none',
-            editing: false
-          }
-        ],
-        modifiers: [
-          {
-            name: '',
-            associated_behavior: ''
-          }
-        ]
-      })
+      scheme: SchemeRepository.new()
     };
   },
 
@@ -68,10 +44,11 @@ const SchemeCreationForm = {
       </p>
       <fieldset class="field">
         <legend>Subjects
+          <a class="button button-add" onclick={() => { ctrl.scheme.addSubject() } }>Add</a>
         </legend>
-        <a class="button button-add" onclick={() => ctrl.scheme.addSubject()}>Add</a>
         {ctrl.scheme.subjects.map((subject, index) => {
-          return mithril.component(Subject, {subject: subject, index: index})
+          var component = subject.editing ? SubjectForm : Subject;
+          return mithril.component(component, {subject: subject, index: index})
         })}
       </fieldset>
       <fieldset class="field">
@@ -82,10 +59,19 @@ const SchemeCreationForm = {
           return mithril.component(Subject, {subject: subject, index: index})
         })}
       </fieldset>
+      <fieldset class="field">
+        <legend>Subject Groups
+          <a class="button button-add" onClick="function(){ this.add('subjects') }">Add</a>
+        </legend>
+        {ctrl.scheme.subjects.map((subject, index) => {
+          return mithril.component(Subject, {subject: subject, index: index})
+        })}
+      </fieldset>
       <fieldset>
         <legend>Behaviors
           <a class="button button-add" onclick={() => ctrl.scheme.addBehavior()}>Add</a>
         </legend>
+        <a class="button button-add" onclick="function(){ this.add('behaviors') }">Add</a>
         {ctrl.scheme.behaviors.map((behavior, index) => {
           var component = behavior.editing ? BehaviorForm : Behavior;
           return mithril.component(component, {behavior: behavior, index: index});
