@@ -1,6 +1,7 @@
 class Scheme < ActiveRecord::Base
   has_many :behaviors
   has_many :subjects
+  belongs_to :user
 
   accepts_nested_attributes_for :behaviors
   accepts_nested_attributes_for :subjects
