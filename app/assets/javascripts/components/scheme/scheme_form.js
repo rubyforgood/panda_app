@@ -4,59 +4,40 @@ const Subject = require('./subject');
 
 const SchemeCreationForm = {
   controller: function() {
-    this.add = function(key) {
-      // TODO: is there a meta way of doing this?
-      // this.scheme[key].push(new key.to_model);
-      if (key == 'behaviors') {
-        this.scheme.behaviors.push(new Behavior());
-        // <BehaviorForm /> append to dom
-      } else if (key == 'subjects') {
-        this.scheme.subjects.push(new Subject());
-        //  <SubjectForm /> append to dom
-      }
-    };
-
-    return {
-      // scheme: new Scheme()
-      // TODO: set this to be reused for new or edit
-      scheme: {
-        name: "an amazing scheme",
-        locked: true,
-        subjects: ['Bob', 'Mary', 'Sponge'],
-        subject_groups: [
-          {
-            name: 'males',
-            members: ['Bob'] // how to link this with 
-          }
-        ],
-        behaviors: [
-          {
-            name: 'walking',
-            type: 'state',
-            mutually_exclusive: true,
-            target: 'none',
-            editing: false
-          }
-        ],
-        modifiers: [
-          {
-            name: '',
-            associated_behavior: ''
-          }
-        ]
-      },
-      addBehavior: () => {
-        console.log(this);
-        this.scheme.behaviors.push({
-          name: '',
+    var s = SchemeRepository.new({
+      name: "an amazing scheme",
+      locked: true,
+      subjects: [{ name: 'Bob', groups: ['males']}],
+      subject_groups: [
+        {
+          name: 'males',
+          members: ['Bob'] // how to link this with
+        }
+      ],
+      behaviors: [
+        {
+          name: 'walking',
           type: 'state',
           mutually_exclusive: true,
           target: 'none',
-          editing: true
-        });
-      }
+          editing: false
+        }
+      ],
+      modifiers: [
+        {
+          name: '',
+          associated_behavior: ''
+        }
+      ]
+    });
+    return {
+      // scheme: new Scheme()
+      // TODO: set this to be reused for new or edit
+      scheme: SchemeRepository.get(s.uuid)
     };
   },
+
+
 
   view: function (ctrl) {
     return <form class="box">
@@ -83,7 +64,7 @@ const SchemeCreationForm = {
       </div>
       <fieldset>
         <legend>Subjects
-          <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
+          <a class="button button-add" onclick={() => { console.log('clicked'); ctrl.scheme.addBlankSubject() } }>Add</a>
         </legend>
         {ctrl.scheme.subjects.map((subject, index) => {
           return mithril.component(Subject, {subject: subject, index: index})

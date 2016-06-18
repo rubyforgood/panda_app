@@ -1,3 +1,5 @@
+const SchemeRepository = require('./../../repositories/scheme_repository');
+
 const SchemeList = {
   controller: function () {
     this.remove = function (index) {
@@ -5,12 +7,7 @@ const SchemeList = {
     };
 
     return {
-      // TODO: add API GET call
-      schemes: [
-        { name: 'name1' },
-        { name: 'name2' },
-        { name: 'name3' }
-      ]
+      schemes: window.SchemeRepository.all()
     };
   },
 
