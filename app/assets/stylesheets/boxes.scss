@@ -11,6 +11,22 @@ $neutral: #ddd;
 $darkened: rgba(0, 0, 0, 0.5);
 $lightened: rgba(255, 255, 255, 0.5);
 
+
+
+.in-process {
+  background-size: 30px 30px;
+  background-image: linear-gradient(
+    45deg,
+    rgba(black, 0.1)  25%,
+    transparent       25%,
+    transparent       50%,
+    rgba(black, 0.1)  50%,
+    rgba(black, 0.1)  75%,
+    transparent       75%,
+    transparent
+  );
+}
+
 html, body {
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   background-color: $dark;
@@ -19,7 +35,7 @@ html, body {
   padding: 0;
 }
 
-.context_marker {
+.context-marker {
   background-color: $neutral;
   color: $darkened;
   font-size: 0.7em;
@@ -28,8 +44,9 @@ html, body {
 }
 
 .box {
-  background-color: $lightened;
+  background-color: $base-light;
   color: $dark;
+  margin-bottom: 0.5em;
 }
 
 .box-event {
@@ -59,13 +76,22 @@ html, body {
   display: inline-block;
   padding: 0.2em 0.4em;
   border: 1px solid;
-  border-radius: 7px;
+  border-radius: 3px;
   text-decoration: none;
 }
 
 .button-add {
   background-color: $base;
   color: white;
+}
+
+.button-remove {
+  background-color: red;
+}
+
+.destructive {
+  float: right;
+  clear: right;
 }
 
 .field {
@@ -77,17 +103,17 @@ html, body {
 }
 
 fieldset {
-  margin: 0;
+  margin: 0 0 1em;
   padding: 0;
 }
 
 legend {
-  display: flex;
   background-color: $darkened;
   color: $lightened;
   width: 100%;
   margin: 0;
   padding: 0;
+
 }
 
 .actions {
