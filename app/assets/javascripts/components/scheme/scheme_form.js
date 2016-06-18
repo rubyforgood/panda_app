@@ -26,7 +26,7 @@ const SchemeCreationForm = {
         subject_groups: [
           {
             name: 'males',
-            members: ['Bob'] // how to link this with 
+            members: ['Bob'] // how to link this with
           }
         ],
         behaviors: [
@@ -36,6 +36,12 @@ const SchemeCreationForm = {
             mutually_exclusive: true,
             target: 'none',
             editing: false
+          }
+        ],
+        modifiers: [
+          {
+            name: '',
+            associated_behavior: ''
           }
         ],
         modifiers: [
@@ -60,36 +66,49 @@ const SchemeCreationForm = {
 
   view: function (ctrl) {
     return <form class="box">
-      <h1 class="context_marker">Create Scheme</h1>
+      <h1 class="context-marker">Create Scheme</h1>
+      <p class="field">
       <label for="scheme_name">
         Scheme Name
-      </label>
+      </label><br />
       <input
         type="text"
+        class="field_entry"
         id="scheme_name"
         name="scheme[name]"
         value={ctrl.scheme.name}
       />
-      <div class="control-group">
-        <label for="scheme_locked">
-          Lock to User
-        </label>
-        <input
-          type="checkbox"
-          id="scheme_locked"
-          name="scheme[locked]"
-          checked={ctrl.scheme.locked}
-        />
-      </div>
-      <fieldset>
+      </p>
+      <p class="field">
+        <div class="control-group">
+          <label for="scheme_locked">
+            Lock to User
+          </label>
+          <input
+            type="checkbox"
+            id="scheme_locked"
+            name="scheme[locked]"
+            checked={ctrl.scheme.locked}
+          />
+        </div>
+      </p>
+      <fieldset class="field">
         <legend>Subjects
-          <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
         </legend>
+        <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
         {ctrl.scheme.subjects.map((subject, index) => {
           return mithril.component(Subject, {subject: subject, index: index})
         })}
       </fieldset>
-      <fieldset>
+      <fieldset class="field">
+        <legend>Subject Groups
+        </legend>
+        <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
+        {ctrl.scheme.subjects.map((subject, index) => {
+          return mithril.component(Subject, {subject: subject, index: index})
+        })}
+      </fieldset>
+      <fieldset class="field">
         <legend>Subject Groups
           <a class="button button-add" onClick="function(){ this.add('subjects') }">Add</a>
         </legend>
@@ -101,6 +120,7 @@ const SchemeCreationForm = {
         <legend>Behaviors
           <a class="button button-add" onClick={ctrl.addBehavior}>Add</a>
         </legend>
+        <a class="button button-add" onclick="function(){ this.add('behaviors') }">Add</a>
         {ctrl.scheme.behaviors.map((behavior, index) => {
           var component = behavior.editing ? BehaviorForm : Behavior;
           return mithril.component(component, {behavior: behavior, index: index});
