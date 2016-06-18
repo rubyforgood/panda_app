@@ -1,8 +1,16 @@
 const Scheme = require('./../models/scheme');
-
+Object.values = function(obj) {
+  var collect = [];
+  for (k in obj) {
+    if (obj.hasOwnProperty(k)) {
+      collect.push(obj[k]);
+    }
+  }
+  return collect;
+}
 const SchemeRepository = {
   all: function() {
-    return SchemeRepository.cache.values();
+    return Object.values(SchemeRepository.cache);
   },
 
   get: function(uuid) {
@@ -23,3 +31,5 @@ const SchemeRepository = {
 
   cache: {}
 }
+
+module.exports = SchemeRepository;
