@@ -74,7 +74,7 @@ Get the active scheme for this observation session.
       uuid: 'abcd-1234',
       name: 'walking',
       type: 'state'
-      category: 'posture',
+      parent_behavior_id: null,
       target: 'none',
       exclusive: false,
       modifiers: ['peaceful', 'agitated']
@@ -83,15 +83,15 @@ Get the active scheme for this observation session.
       uuid: 'abcd-1234',
       name: 'standing',
       type: 'state'
-      category: 'posture',
       exclusive: true,
-      modifiers: ['peaceful', 'agitated']
+      modifiers: ['peaceful', 'agitated'],
+      parent_behavior_id: null
     },
     {
       uuid: 'abcd-1234',
       name: 'pointing',
       type: 'event',
-      category: 'actions',
+      parent_behavior_id: null,
       modifiers: []
     }
   ]
@@ -115,17 +115,15 @@ Create a new observation scheme.
         name: 'aggression',        // string
         type: 'event',             // string (event|state)
         target_type: 'other',      // string (other|none|self)
-        category: 'actions',          // string or null
         mutually_exclusive: false  // boolean or null
-        parent_behavior: null // or uuid
+        parent_behavior_id: null // or uuid
       },
       {
         name: 'biting',        // string
         type: 'event',           // string (event|state)
         target_type: 'other',    // string (other|none|self)
-        category: 'actions',        // string or null
         mutually_exclusive: false // boolean or null
-        parent_behavior: uuid
+        parent_behavior_id: uuid
       }
     ]
   }
