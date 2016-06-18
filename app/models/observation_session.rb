@@ -1,5 +1,8 @@
 class ObservationSession < ActiveRecord::Base
   belongs_to :scheme
-  has_many :observations
   belongs_to :user
+
+  has_many :observations
+
+  accepts_nested_attributes_for :observations
 end
