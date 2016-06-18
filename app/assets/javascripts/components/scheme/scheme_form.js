@@ -1,5 +1,6 @@
 var mithril = require('mithril');
 const Behavior = require('./behavior');
+const BehaviorForm = require('./behavior_form');
 const Subject = require('./subject');
 
 const SchemeCreationForm = {
@@ -43,17 +44,10 @@ const SchemeCreationForm = {
             name: '',
             associated_behavior: ''
           }
-        ],
-        modifiers: [
-          {
-            name: '',
-            associated_behavior: ''
-          }
         ]
       },
       addBehavior: () => {
-        console.log(this);
-        this.scheme.behaviors.push({
+        this.scheme.behaviors.unshift({
           name: '',
           type: 'state',
           mutually_exclusive: true,
@@ -108,19 +102,10 @@ const SchemeCreationForm = {
           return mithril.component(Subject, {subject: subject, index: index})
         })}
       </fieldset>
-      <fieldset class="field">
-        <legend>Subject Groups
-          <a class="button button-add" onClick="function(){ this.add('subjects') }">Add</a>
-        </legend>
-        {ctrl.scheme.subjects.map((subject, index) => {
-          return mithril.component(Subject, {subject: subject, index: index})
-        })}
-      </fieldset>
       <fieldset>
         <legend>Behaviors
-          <a class="button button-add" onClick={ctrl.addBehavior}>Add</a>
+          <a class="button button-add" onclick={() => ctrl.addBehavior()}>Add</a>
         </legend>
-        <a class="button button-add" onclick="function(){ this.add('behaviors') }">Add</a>
         {ctrl.scheme.behaviors.map((behavior, index) => {
           var component = behavior.editing ? BehaviorForm : Behavior;
           return mithril.component(component, {behavior: behavior, index: index});
