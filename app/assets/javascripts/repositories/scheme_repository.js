@@ -26,8 +26,28 @@ const SchemeRepository = {
     return SchemeRepository.cache[uuid];
   },
 
-  save: function(uuid) {
-    return SchemeRepository.cache[uuid];
+  save: function(scheme) {
+    scheme.ensureUuids();
+    console.log(serialize(scheme));
+
+    return mithril.request({
+      method: 'POST',
+      url: `/api/schemes.json`,
+      data: serialize(scheme)
+    });
+
+    function serialize(scheme) {
+      return {
+        scheme: {
+          id:     scheme.uuid,
+          name:   scheme.name,
+          locked: scheme.locked,
+          behaviors_attributes: scheme.behaviors,
+          subjects_attributes: [],
+
+        }
+      };
+    }
   },
 
   new: function(params) {
@@ -41,8 +61,8 @@ const SchemeRepository = {
   fetch: function(uuid) {
     // throw something in the cache to prevent re-fetches
     SchemeRepository.cache[uuid] = new Scheme({uuid: uuid});
-    mithril.request({method: 'GET', url: `/api/schemes/${uuid}.json`}).then(function(data) {
-      SchemeRepository.cache[data.uuid] = new Scheme(data);
+    mithril.request({method: 'GET', url: `/api/schemes/${uuid}.json`, type: Scheme}).then(function(scheme) {
+      SchemeRepository.cache[scheme.uuid] = scheme;
     });
   },
 

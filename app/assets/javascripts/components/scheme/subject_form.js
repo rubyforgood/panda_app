@@ -16,6 +16,7 @@ const SubjectForm = {
         id="scheme_subject"
         name="scheme[subject]"
         value={ctrl.subject.name}
+        onchange={(e)=> { ctrl.subject.name = e.target.value }}
       />
       <button>save</button>
     </div>

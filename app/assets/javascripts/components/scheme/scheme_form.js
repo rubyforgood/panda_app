@@ -7,11 +7,15 @@ const SchemeRepository = require('../../repositories/scheme_repository');
 
 const SchemeCreationForm = {
   controller: function() {
-    return {
-      // scheme: new Scheme()
-      // TODO: set this to be reused for new or edit
+    var ctrl = {
       scheme: SchemeRepository.new()
-    };
+    }
+    ctrl.save = function() {
+      this.scheme
+      SchemeRepository.save(this.scheme);
+    }.bind(ctrl);
+
+    return ctrl;
   },
 
   view: function (ctrl) {
@@ -27,6 +31,7 @@ const SchemeCreationForm = {
         id="scheme_name"
         name="scheme[name]"
         value={ctrl.scheme.name}
+        onchange={(e)=> { ctrl.scheme.name = e.target.value }}
       />
       </p>
       <p class="field">
@@ -39,6 +44,7 @@ const SchemeCreationForm = {
             id="scheme_locked"
             name="scheme[locked]"
             checked={ctrl.scheme.locked}
+            onchange={(e)=> { ctrl.scheme.locked = e.target.value }}
           />
         </div>
       </p>
@@ -77,6 +83,12 @@ const SchemeCreationForm = {
           return mithril.component(component, {behavior: behavior, index: index});
         })}
       </fieldset>
+
+      <input
+        type='submit'
+        value='Save'
+        onclick={ () => { ctrl.save() } }
+      />
     </form>;
   }
 };

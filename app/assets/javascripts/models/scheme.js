@@ -20,7 +20,7 @@ const Scheme = function(params) {
   };
 
   this.addSubject = (() => {
-    this.subjects.unshift({
+    this.subjects.push({
       uuid: uuid.v1(),
       name: "",
       groups: [],
@@ -29,7 +29,7 @@ const Scheme = function(params) {
   });
 
   this.addBehavior = (() => {
-    this.behaviors.unshift({
+    this.behaviors.push({
       uuid: uuid.v1(),
       name: "",
       editing: true

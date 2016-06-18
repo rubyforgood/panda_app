@@ -18,6 +18,7 @@ const BehaviorForm = {
           id={`scheme_behavior_${ ctrl.index }`}
           name={`scheme[behavior][${ ctrl.index }][name]`}
           value={ctrl.behavior.name}
+          onchange={(e)=> { ctrl.behavior.name = e.target.value }}
         />
       </div>
       <div class="control-group">
@@ -31,6 +32,7 @@ const BehaviorForm = {
           name={`scheme[behavior][${ ctrl.index }][type]`}
           value="state"
           checked={ctrl.behavior.type == "state"}
+          onchange={(e)=> { if(e.target.checked) { ctrl.behavior.type = e.target.value }}}
         />
         <label for={`scheme_behavior_${ ctrl.index }_type_event`}>
           Event
@@ -41,6 +43,7 @@ const BehaviorForm = {
           name={`scheme[behavior][${ ctrl.index }][type]`}
           value="event"
           checked={ctrl.behavior.type == "event"}
+          onchange={(e)=> { if(e.target.checked) { ctrl.behavior.type = e.target.value }}}
         />
       </div>
       <div class="control-group">
@@ -54,6 +57,7 @@ const BehaviorForm = {
           name={`scheme[behavior][${ ctrl.index }][target]`}
           value="self"
           checked={ctrl.behavior.target == "self"}
+          onchange={(e)=> { if(e.target.checked) { ctrl.behavior.target = e.target.value }}}
         />
         <label for={`scheme_behavior_${ ctrl.index }_target_other`}>
           Other
@@ -64,6 +68,7 @@ const BehaviorForm = {
           name={`scheme[behavior][${ ctrl.index }][target]`}
           value="other"
           checked={ctrl.behavior.target == "other"}
+          onchange={(e)=> { if(e.target.checked) { ctrl.behavior.target = e.target.value }}}
         />
         <label for={`scheme_behavior_${ ctrl.index }_target_none`}>
           None
@@ -74,6 +79,7 @@ const BehaviorForm = {
           name={`scheme[behavior][${ ctrl.index }][target]`}
           value="none"
           checked={ctrl.behavior.target == "none"}
+          onchange={(e)=> { if(e.target.checked) { ctrl.behavior.target = e.target.value }}}
         />
       </div>
       <div class="control-group">
@@ -85,6 +91,7 @@ const BehaviorForm = {
           id={`scheme_behavior_${ ctrl.index }_mutually_exclusive`}
           name={`scheme[behavior][${ ctrl.index }][mutually_exclusive]`}
           checked={ctrl.behavior.mutually_exclusive}
+          onchange={(e)=> { ctrl.behavior.mutually_exclusive = e.target.value }}
         />
       </div>
     </div>
