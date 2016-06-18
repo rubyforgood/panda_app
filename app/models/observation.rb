@@ -1,3 +1,3 @@
 class Observation < ActiveRecord::Base
-  belongs_to :session
+  belongs_to :observation_session
 end
