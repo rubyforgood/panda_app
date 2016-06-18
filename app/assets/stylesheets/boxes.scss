@@ -103,6 +103,8 @@ html, body {
 }
 
 fieldset {
+  background-color: $lightened;
+  border: none;
   margin: 0 0 1em;
   padding: 0;
 }
