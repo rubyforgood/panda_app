@@ -8,5 +8,7 @@ var apps = {
 var element = document.querySelector('[data-mithril-component]');
 var app = apps[element.getAttribute('data-mithril-component')];
 
+window.SchemeRepository = require('./repositories/scheme_repository');
+
 mithril.route.mode = "hash";
 mithril.route(element, '/', app.routes);

@@ -18,5 +18,7 @@ vendor
 # ignore node cache
 node_modules
 
-# ignore RubyMine config
+
+# ignore various editor stuff
+*.swp
 .idea
