@@ -83,7 +83,7 @@ const SchemeCreationForm = {
           return mithril.component(Subject, {subject: subject, index: index})
         })}
       </fieldset>
-      <fieldset>
+      <fieldset class="field">
         <legend>Behaviors
           <a class="button button-add" onclick={ctrl.addBehavior}>Add</a>
         </legend>
