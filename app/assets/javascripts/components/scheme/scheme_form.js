@@ -3,31 +3,39 @@ const Behavior = require('./behavior');
 const BehaviorForm = require('./behavior_form');
 const Subject = require('./subject');
 const SubjectForm = require('./subject_form');
+const SubjectGroupForm = require('./subject_group_form');
 const SchemeRepository = require('../../repositories/scheme_repository');
 
 const SchemeCreationForm = {
   controller: function() {
-    return {
-      // scheme: new Scheme()
-      // TODO: set this to be reused for new or edit
-      scheme: SchemeRepository.new()
-    };
+    var ctrl = { scheme: SchemeRepository.new() };
+    ctrl.parentBehaviors = function() {
+      this.scheme.behaviors.filter(function(behavior) {
+        if (behavior.parent && behavior.parent.length > 0) {
+          return behavior
+        }
+      });
+    }.bind(ctrl);
+
+    return ctrl;
   },
 
   view: function (ctrl) {
     return <form class="box">
       <h1 class="context-marker">Create Scheme</h1>
       <p class="field">
-      <label for="scheme_name">
-        Scheme Name
-      </label><br />
-      <input
-        type="text"
-        class="field_entry"
-        id="scheme_name"
-        name="scheme[name]"
-        value={ctrl.scheme.name}
-      />
+        <div class="control-group">
+          <label for="scheme_name">
+            Scheme Name
+          </label><br />
+          <input
+            type="text"
+            class="field_entry"
+            id="scheme_name"
+            name="scheme[name]"
+            value={ctrl.scheme.name}
+          />
+        </div>
       </p>
       <p class="field">
         <div class="control-group">
@@ -43,20 +51,27 @@ const SchemeCreationForm = {
         </div>
       </p>
       <fieldset class="field">
+        <legend>Subject Groups
+        </legend>
+        <a class="button button-add" onclick={() => ctrl.scheme.addSubjectGroup()}>Add</a>
+        {ctrl.scheme.subjects.map((subject, index) => {
+          return mithril.component(SubjectGroupForm, {
+            subject: subject,
+            index: index
+          })
+        })}
+      </fieldset>
+      <fieldset class="field">
         <legend>Subjects
         </legend>
         <a class="button button-add" onclick={() => { ctrl.scheme.addSubject() } }>Add</a>
         {ctrl.scheme.subjects.map((subject, index) => {
           var component = subject.editing ? SubjectForm : Subject;
-          return mithril.component(component, {subject: subject, index: index})
-        })}
-      </fieldset>
-      <fieldset class="field">
-        <legend>Subject Groups
-        </legend>
-        <a class="button button-add" onclick={() => ctrl.scheme.addSubjectGroup()}>Add</a>
-        {ctrl.scheme.subjects.map((subject, index) => {
-          return mithril.component(Subject, {subject: subject, index: index})
+          return mithril.component(component, {
+            subject: subject,
+            index: index,
+            subjectGroups: ctrl.scheme.subjectGroups
+          })
         })}
       </fieldset>
       <fieldset class="field">
@@ -65,7 +80,11 @@ const SchemeCreationForm = {
         <a class="button button-add" onclick={() => ctrl.scheme.addBehavior()}>Add</a>
         {ctrl.scheme.behaviors.map((behavior, index) => {
           var component = behavior.editing ? BehaviorForm : Behavior;
-          return mithril.component(component, {behavior: behavior, index: index});
+          return mithril.component(component, {
+            parentBehaviors: ctrl.parentBehaviors(),
+            behavior: behavior,
+            index: index
+          });
         })}
       </fieldset>
     </form>;

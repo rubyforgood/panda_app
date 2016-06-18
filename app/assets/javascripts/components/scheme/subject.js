@@ -1,5 +1,6 @@
-const m = require('mithril')
-const EditableItem = require('./editable_item.js')
+const m = require('mithril');
+const EditableItem = require('./editable_item.js');
+
 const Subject = {
   controller: function (args) {
     return {
@@ -8,7 +9,14 @@ const Subject = {
     }
   },
   view: function (ctrl) {
-    return <EditableItem namespace='scheme' item='subject' index={ctrl.index} text={ctrl.subject.name}/>;
+    return <div>
+      <EditableItem namespace="scheme" item="subject" index={ctrl.index} text={ctrl.subject.name}/>
+      <ul class="associations">
+        {ctrl.subject.groups.map((group) => {
+          return <li>{group.name}</li>
+        })};
+      </ul>
+    </div>;
   }
 };
 
