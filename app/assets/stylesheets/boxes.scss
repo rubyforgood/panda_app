@@ -1,0 +1,62 @@
+$base: #2C8682;
+$base-dark: darken($base, 70);
+$base-light: lighten($base, 30);
+
+$alternate: #fc9834;
+$alternate-dark: darken($alternate, 70);
+$alternate-light: lighten($alternate, 30);
+
+$darkened: rgba(0, 0, 0, 0.5);
+$dark: #222;
+$neutral: #ddd;
+
+html, body {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  background-color: $dark;
+  color: $base-light;
+  margin: 0;
+  padding: 0;
+}
+
+.context_marker {
+  background-color: $neutral;
+  color: $darkened;
+  font-size: 0.7em;
+  margin: 0;
+  padding: 0.1em 0.2em;
+}
+
+.box {
+  color: $dark;
+}
+
+.box-event {
+  background-color: $alternate-light;
+  border-top: 1px solid $alternate;
+}
+
+.box-state {
+  background-color: $base-light;
+  border-top: 1px solid $base;
+}
+
+.field {
+  margin: 0.3em;
+}
+
+.field_entry {
+  width: 97%;
+}
+
+
+.actions {
+  background-color: $darkened;
+  padding: 0.7em;
+  text-align: right;
+}
+
+@media (min-width: 40em) {
+  .box {
+    margin: 1em;
+  }
+}
