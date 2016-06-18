@@ -34,6 +34,8 @@ gem 'puma', '~> 3.4'
 
 gem 'browserify-rails'
 
+gem 'factory_girl_rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
