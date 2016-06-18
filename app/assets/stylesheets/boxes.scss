@@ -1,5 +1,5 @@
 $base: #2C8682;
-$base-dark: darken($base, 70);
+$base-dark: darken($base, 10);
 $base-light: lighten($base, 30);
 
 $alternate: #fc9834;
@@ -8,10 +8,25 @@ $alternate-light: lighten($alternate, 30);
 
 $dark: #222;
 $neutral: #ddd;
-$darkened: rgba(0, 0, 0, 0.5);
+$darkened: rgba(0, 0, 0, 0.4);
+$light: #fff;
 $lightened: rgba(255, 255, 255, 0.5);
 
+@mixin gradient($from-color, $to-color) {
+    background-color: mix($from-color, $to-color); /* Fallback */
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from-color), to($to-color));
+    background-image: -webkit-linear-gradient(top, $from-color, $to-color);
+    background-image:    -moz-linear-gradient(top, $from-color, $to-color);
+    background-image:     -ms-linear-gradient(top, $from-color, $to-color);
+    background-image:      -o-linear-gradient(top, $from-color, $to-color);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$from-color}', EndColorStr='#{$to-color}')";
+}
 
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
 
 .in-process {
   background-size: 30px 30px;
@@ -64,6 +79,16 @@ html, body {
   background-color: $lightened;
 }
 
+.option {
+  border: 1px solid $light;
+  @include border-radius(3px);
+  display: inline-block;
+  margin: 0.2em 0.4em;
+  padding-right: 0.4em;
+  background: $darkened;
+  color: $light;
+}
+
 .list-control {
   display: flex;
   flex-flow: row wrap;
@@ -81,12 +106,14 @@ html, body {
 }
 
 .button-add {
-  background-color: $base;
+  @include gradient($base, $base-dark);
   color: white;
 }
 
 .button-remove {
+  color: $dark;
   background-color: red;
+  border-radius: 0px;
 }
 
 .destructive {
@@ -106,16 +133,15 @@ fieldset {
   background-color: $lightened;
   border: none;
   margin: 0 0 1em;
-  padding: 0;
+  padding: 0 0 1em;
 }
 
 legend {
-  background-color: $darkened;
-  color: $lightened;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-
+  background-color: $base-light;
+  color: $light;
+  margin: 0 0 0.5em;
+  padding: 0.2em 0.5em 0.2em 0.2em;
+  text-align: left;
 }
 
 .actions {
