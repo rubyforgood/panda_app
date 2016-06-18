@@ -7,7 +7,9 @@ const FocusAnimal = {
     return {
       stage_observation: function() {
         this.staged_observations.push(this.new_observation);
-        this.new_observation = {};
+        this.new_observation = {
+          actor: this.new_observation.actor,
+        };
       },
       subjects: [
         { id: 1, name: 'Jamie' },
