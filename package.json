@@ -22,5 +22,11 @@
     "browserify-incremental": "^3.1.1",
     "mithril": "^0.2.5",
     "mithrilify": "0.0.6"
+  },
+  "dependencies": {
+    "browserify": "^13.0.1",
+    "browserify-incremental": "^3.1.1",
+    "mithril": "^0.2.5",
+    "mithrilify": "0.0.6"
   }
 }
