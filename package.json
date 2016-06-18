@@ -29,9 +29,7 @@
     "browserify": "^13.0.1",
     "browserify-incremental": "^3.1.1",
     "mithril": "^0.2.5",
-    "mithrilify": "0.0.6"
-  },
-  "dependencies": {
+    "mithrilify": "0.0.6",
     "node-uuid": "^1.4.7"
   }
 }

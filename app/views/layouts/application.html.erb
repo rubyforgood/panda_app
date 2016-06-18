@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="in-process">
 <head>
+  <meta name="google-site-verification" content="OPS4s1bOQYqea_ni5gN_IRvhwok0xYuYOTZ9-4NpfK4" />
   <title>PandaApp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width; initial-scale=1">
@@ -8,8 +9,17 @@
 </head>
 <body>
 
-<%= yield %>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
+<% if user_signed_in? %>
+  Signed in as <%= current_user.email %>. Not you?
+  <%= form_tag(destroy_user_session_path, method: :delete) do %>
+    <%= submit_tag('Sign out') %>
+  <% end %>
+<% end %>
+
+<%= yield %>
 
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
