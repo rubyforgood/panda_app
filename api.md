@@ -23,6 +23,10 @@ Request:
   metadata: {
   	anything, will be stored as json
   }
+  
+  observations_attributes: [
+  	{ observation }, ...
+  ]
 }
 ```
 
