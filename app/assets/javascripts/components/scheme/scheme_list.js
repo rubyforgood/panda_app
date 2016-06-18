@@ -7,7 +7,7 @@ const SchemeList = {
     };
 
     return {
-      schemes: window.SchemeRepository.all()
+      schemes: function() { return [SchemeRepository.get('14f62f8e-2196-496b-a19d-893d6cf53c4d')] }
     };
   },
 
@@ -15,7 +15,7 @@ const SchemeList = {
     return <div class="box">
       <h1 class="context-marker">Schemes</h1>
       <p class="list-control"><a class="button button-add" href="#/new">+ Add Scheme</a></p>
-      {ctrl.schemes.map((scheme, index) => {
+      {ctrl.schemes().map((scheme, index) => {
         return (
           <div class={`control-group scheme_${index}`}>
             <button onclick="function(){ ctrl.remove(index) }">-</button>
