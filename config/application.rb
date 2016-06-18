@@ -33,5 +33,9 @@ module PandaApp
     config.active_record.raise_in_transactional_callbacks = true
 
     config.browserify_rails.commandline_options = "-t mithrilify -t babelify"
+
+    config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+    end
   end
 end
