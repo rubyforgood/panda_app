@@ -11,3 +11,7 @@ deploy:
     secure: QGWgvUwgauWi2toO9eXCjm62tRd8lrJlwcrexDyNHnosSohbWrFRv6oJJybGyT4vQGmmWRGEJkM9CwuFVQ4iXM8VcMb+2DweSBSiLlugKGb+JMliWT5WDP3+uTDAXJLkiU/AjXOt/5I0UTkiF2SmzV5oFp7Y7sVbWyWiKJjWvoXDXm6HcLxHkpoHSR4nzwvHRv+ynz/kdt26deXUMkNbIJqcNx8firPVeDeSyF/cnL41M4vsaY3LyWLJ+wf44id3ZaeBWeqDOvTMO0tnPERAaV0g/TkUuhKjA8WdwoPvYdjV58jeQPqClNwtxCqF0vrCotx9NyUTC+XWQymzstvpNHhGNmNN/iMvabv8Xh9ZFFEdxlTQ22gwc6xcIrK3hG8eSy2IS1YrMzxxMLE04fTsh+rtksunFLcmqKKf+G74BWSiiOBA62LIYdelLgw26SFNjPwcOnMgkVGYqeuNTD8ADqUBFImbRxU0OkED4q4G2eLjqeyg5cXHvDwPwA5QH4UkPLocvoQ0Z6264LHmriI5zyAZW8HjtfdvfhC1RVGUybMvHHG0luN6J/m6KJ2GUWb5X1sQqBc6O4wXSK7tryyWySpQ7KyjSWAYt0aoBgjY/BldSYuFIBsvlVmE0hNJ2zP0RZIz/hPQvXjl3oWeYdHfS4nzl/FeUK5Hyjt5zOjLzOM=
   app: panda-app
   on: master
+  run:
+    - "rake db:migrate"
+    - restart
+    - "rake cleanup"
