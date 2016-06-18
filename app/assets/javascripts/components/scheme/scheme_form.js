@@ -36,7 +36,8 @@ const SchemeCreationForm = {
   },
 
   view: function (ctrl) {
-    return <form>
+    return <form class="box">
+      <h1 class="context_marker">Create Scheme</h1>
       <label for="scheme_name">
         Scheme Name
       </label>
@@ -59,7 +60,7 @@ const SchemeCreationForm = {
       </div>
       <fieldset>
         <legend>Subjects
-          <button onclick="function(){ this.add('subjects') }">+</button>
+          <a class="button button-add" onclick="function(){ this.add('subjects') }">Add</a>
         </legend>
         {ctrl.scheme.subjects.map((subject, index) => {
           return mithril.component(Subject, {subject: subject, index: index})
@@ -67,7 +68,7 @@ const SchemeCreationForm = {
       </fieldset>
       <fieldset>
         <legend>Behaviors
-          <button onclick="function(){ this.add('behaviors') }">+</button>
+          <a class="button button-add" onclick="function(){ this.add('behaviors') }">Add</a>
         </legend>
         {ctrl.scheme.behaviors.map((behavior, index) => {
           return mithril.component(Behavior, {behavior: behavior, index: index})

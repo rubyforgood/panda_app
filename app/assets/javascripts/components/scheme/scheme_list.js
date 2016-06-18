@@ -15,8 +15,9 @@ const SchemeList = {
   },
 
   view: function (ctrl) {
-    return <div>
-      <h1>Schemes <a href="#/new">+</a></h1>
+    return <div class="box">
+      <h1 class="context_marker">Schemes</h1>
+      <p class="list-control"><a class="button button-add" href="#/new">+ Add Scheme</a></p>
       {ctrl.schemes.map((scheme, index) => {
         return (
           <div class={`control-group scheme_${index}`}>
