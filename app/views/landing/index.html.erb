@@ -13,11 +13,13 @@
     <% end %>
   </p>
 
-  <p>
-    <%= form_tag api_observation_session_exports_path(ObservationSession.last) do %>
-      <%= hidden_field_tag "email_address", current_user.email %>
-      <%= hidden_field_tag "subject", "Animal Observation Session" %>
-      <%= submit_tag "Email me my latest observation" %>
-    <% end %>
-  </p>
+  <% if current_user.present? %>
+    <p>
+      <%= form_tag api_observation_session_exports_path(ObservationSession.last) do %>
+        <%= hidden_field_tag "email_address", current_user.email %>
+        <%= hidden_field_tag "subject", "Animal Observation Session" %>
+        <%= submit_tag "Email me my latest observation" %>
+      <% end %>
+    </p>
+  <% end %>
 </p>
