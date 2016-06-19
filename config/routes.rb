@@ -7,10 +7,11 @@ Rails.application.routes.draw do
       omniauth_callbacks: "users/omniauth_callbacks"
     }
 
-
   namespace :api do
     resources :schemes, only: [:create, :show, :update, :index]
-    resources :observation_sessions, only: [:create, :show, :index]
+    resources :observation_sessions, only: [:create, :show, :index] do
+      resource :exports, only: [:create]
+    end
     resources :observations, only: [:create, :update]
   end
 
