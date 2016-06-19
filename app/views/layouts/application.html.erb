@@ -8,18 +8,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% flash.keys.each do |key| %>
+  <p class="<%= key %>"><%= self.public_send(key) %></p>
+<%- end -%>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
+<div class="auth">
 <% if user_signed_in? %>
-  Signed in as <%= current_user.email %>. Not you?
-  <%= form_tag(destroy_user_session_path, method: :delete) do %>
+  <p class="auth-as in-process"><%= user_name %></p>
+  <%= form_tag(destroy_user_session_path, method: :delete, class: 'auth-end') do %>
     <%= submit_tag('Sign out') %>
   <% end %>
 <% else %>
-  <%= link_to "Sign in", new_user_session_path %>
+  <p class="auth-entry">
+    <%= link_to "Sign in", new_user_session_path %>
+  </p>
 <% end %>
+</div>
 
 <%= yield %>
 

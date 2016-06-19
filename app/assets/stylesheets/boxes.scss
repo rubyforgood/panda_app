@@ -22,12 +22,33 @@ html, body {
   padding: 0;
 }
 
+.auth {
+  background: $neutral;
+  color: $dark;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.auth-as {
+  margin: 0;
+  padding: 0.4em;
+}
+
+.auth-end {
+  background-color: red;
+}
+
 .context-marker {
   background-color: $neutral;
   color: $darkened;
   font-size: 0.7em;
   margin: 0;
   padding: 0.1em 0.2em;
+}
+
+.counter {
+  margin: 0;
+  padding: 0.4em;
 }
 
 .box {

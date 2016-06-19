@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
   def ssl_configured?
     !!Rails.env.production?
   end
+
+  def user_name
+    current_user.email.presence || 'Logged in'
+  end
+  helper_method :user_name
 end
