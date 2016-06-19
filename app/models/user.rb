@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :oauth_credentials
   has_many :schemes
+  has_many :observation_sessions
 
   def self.find_for_google_oauth2(access_token, _signed_in_resource=nil)
     email = access_token.info["email"]
