@@ -8,24 +8,19 @@ const SubjectGroupForm = require('./subject_group_form');
 const SchemeRepository = require('../../repositories/scheme_repository');
 
 const SchemeCreationForm = {
-<<<<<<< HEAD
   controller: function() {
     var ctrl = {
       scheme: SchemeRepository.new()
-    }
+    };
     ctrl.save = function() {
-      this.scheme
       SchemeRepository.save(this.scheme);
-=======
-  controller: function () {
-    var ctrl = {scheme: SchemeRepository.new()};
+    };
     ctrl.parentBehaviors = function () {
       this.scheme.behaviors.filter(function (behavior) {
         if (behavior.parent && behavior.parent.length > 0) {
           return behavior
         }
       });
->>>>>>> 8817afa0ea82ddbddb7de1825865c3f8f0aa7575
     }.bind(ctrl);
 
     return ctrl;
@@ -35,19 +30,6 @@ const SchemeCreationForm = {
     return <form class="box">
       <h1 class="context-marker">Create Scheme</h1>
       <p class="field">
-<<<<<<< HEAD
-      <label for="scheme_name">
-        Scheme Name
-      </label><br />
-      <input
-        type="text"
-        class="field_entry"
-        id="scheme_name"
-        name="scheme[name]"
-        value={ctrl.scheme.name}
-        onchange={(e)=> { ctrl.scheme.name = e.target.value }}
-      />
-=======
         <div class="control-group">
           <label for="scheme_name">
             Scheme Name
@@ -58,9 +40,9 @@ const SchemeCreationForm = {
             id="scheme_name"
             name="scheme[name]"
             value={ctrl.scheme.name}
+            onchange={(e)=> { ctrl.scheme.name = e.target.value }}
           />
         </div>
->>>>>>> 8817afa0ea82ddbddb7de1825865c3f8f0aa7575
       </p>
       <p class="field">
         <div class="control-group">
