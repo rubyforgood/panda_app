@@ -35,12 +35,13 @@ const SchemeRepository = {
   save: function(scheme) {
     scheme.ensureUuids();
     console.log(serialize(scheme));
+    SchemeRepository.savingCache[scheme.uuid] = true;
 
     return mithril.request({
       method: 'POST',
       url: `/api/schemes.json`,
       data: serialize(scheme)
-    });
+    }).then(success, failure);
 
     function serialize(scheme) {
       return {
@@ -66,6 +67,15 @@ const SchemeRepository = {
           })
         }
       };
+    }
+
+    function success() {
+      SchemeRepository.savingCache[scheme.uuid] = false;
+      SchemeRepository.savedCache[scheme.uuid] = true;
+    }
+
+    function failure() {
+
     }
   },
 
@@ -98,7 +108,17 @@ const SchemeRepository = {
     });
   },
 
-  cache: {}
+  saving: function(uuid) {
+    return SchemeRepository.savingCache[uuid];
+  },
+
+  saved: function(uuid) {
+    return SchemeRepository.savedCache[uuid];
+  },
+
+  cache: {},
+  savingCache: {},
+  savedCache: {}
 };
 
 module.exports = SchemeRepository;

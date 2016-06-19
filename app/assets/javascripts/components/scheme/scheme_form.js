@@ -22,6 +22,12 @@ const SchemeCreationForm = {
         }
       });
     }.bind(ctrl);
+    ctrl.saving = function() {
+      return SchemeRepository.saving(this.scheme.uuid);
+    }.bind(ctrl);
+    ctrl.saved = function() {
+      return SchemeRepository.saved(this.scheme.uuid);
+    }.bind(ctrl);
 
     return ctrl;
   },
@@ -115,6 +121,11 @@ const SchemeCreationForm = {
           value='Save'
           onclick={ (e) => { e.preventDefault(); ctrl.save(); } }
         />
+      </div>
+
+      <div>
+        { ctrl.saving() ? "Saving..." : ""}
+        { ctrl.saved() ? "Saved!" : ""}
       </div>
     </form>;
   }
