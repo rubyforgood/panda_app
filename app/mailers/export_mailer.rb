@@ -6,8 +6,7 @@ class ExportMailer < ActionMailer::Base
     end
   end
 
-  def export_email(user, csv_string)
-    @user = user
+  def export_email(email, subject, csv_string)
     mg_client = Mailgun::Client.new ENV["MAILGUN_API_KEY"]
     html_output = render_to_string template: "export_mailer/export_email.html.erb"
     text_output = render_to_string template: "export_mailer/export_email.text.erb"
@@ -15,8 +14,8 @@ class ExportMailer < ActionMailer::Base
     attachment = Attachment.new(StringIO.new(csv_string))
 
     message_params = {:from    => "no-reply@panda-app.herokuapps.com",
-                      :to      => @user.email,
-                      :subject => "Animal Observation Export",
+                      :to      => email,
+                      :subject => subject,
                       :html    => html_output.to_str,
                       :text    => text_output.to_str,
                       :attachment => attachment
