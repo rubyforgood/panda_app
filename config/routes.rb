@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'scheme' => 'scheme#index'
 
   devise_for :users, :skip => [:registrations], :controllers =>
     {
@@ -14,6 +13,8 @@ Rails.application.routes.draw do
   end
 
   authenticate :user do
+    get 'observe' => 'landing#observe'
+    get 'scheme' => 'scheme#index'
     namespace :api do
       resources :schemes, only: [:create, :show, :update, :index]
       resources :observation_sessions, only: [:create, :show, :index] do
@@ -23,8 +24,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'observe' => 'landing#observe'
-
-  get '/ui' => 'ui#show'
   root 'landing#index'
 end
