@@ -123,6 +123,7 @@ html, body {
 }
 
 .button {
+  font-size: 100%;
   display: inline-block;
   padding: 0.2em 0.6em;
   border: 1px solid $base-dark;
@@ -144,6 +145,12 @@ html, body {
   color: $dark;
   background-color: $warning;
   border-radius: 0px;
+}
+
+.button-select {
+  color: $light;
+  background-color: $darkened;
+  margin: 0.2em;
 }
 
 .button-commit {

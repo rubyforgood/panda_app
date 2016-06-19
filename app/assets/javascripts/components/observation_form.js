@@ -115,7 +115,7 @@ const FocusAnimal = {
             return <span> {subject.name} </span>;
           } else {
             return(
-              <button class="button" onclick={ () => new_observation.actor = subject }>
+              <button class="button button-select" onclick={ () => new_observation.actor = subject }>
                 {subject.name}
               </button>
             );
@@ -131,7 +131,7 @@ const FocusAnimal = {
         <legend class="observation-legend">Select Behavior</legend>
         {ctrl.behaviors.map(behavior => {
           return(
-            <button class="button" onclick={() => new_observation.behavior = behavior}>
+            <button class="button button-select" onclick={() => new_observation.behavior = behavior}>
               {behavior.name}
             </button>
           );
@@ -146,7 +146,7 @@ const FocusAnimal = {
         <legend class="observation-legend">Select target</legend>
         {scheme.subjects.map(subject => {
           return(
-            <button class="button" onclick={() => new_observation.target = subject}>
+            <button class="button button-select" onclick={() => new_observation.target = subject}>
               {subject.name}
             </button>
           );
@@ -180,7 +180,7 @@ const FocusAnimal = {
           {
             leftover_modifiers.map(modifier => {
               return(
-                <button class="button" onclick={() => new_observation.modifiers.push(modifier)}>
+                <button class="button button-select" onclick={() => new_observation.modifiers.push(modifier)}>
                   {modifier}
                 </button>
               );
