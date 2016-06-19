@@ -91,8 +91,8 @@ const FocusAnimal = {
         <p>Staged observations: {staged_observations.length}</p>
         {this.select_actor(ctrl)}
         {this.content(ctrl)}
-        <div>
-          <button onclick={() => ctrl.complete_session()}>
+        <div class="actions">
+          <button class="button button-commit" onclick={() => ctrl.complete_session()}>
             Complete Session
           </button>
         </div>
