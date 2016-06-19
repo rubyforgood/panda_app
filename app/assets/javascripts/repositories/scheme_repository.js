@@ -5,7 +5,7 @@ const Scheme = require('./../models/scheme');
 if(!Object.values) {
   Object.values = function(obj) {
     var collect = [];
-    for (k in obj) {
+    for (var k in obj) {
       if (obj.hasOwnProperty(k)) {
         collect.push(obj[k]);
       }
@@ -16,6 +16,9 @@ if(!Object.values) {
 
 const SchemeRepository = {
   all: function() {
+    if( !SchemeRepository.fetchAllCalledAlready ) {
+      SchemeRepository.fetchAll();
+    }
     return Object.values(SchemeRepository.cache);
   },
 
@@ -79,6 +82,19 @@ const SchemeRepository = {
     SchemeRepository.cache[uuid] = new Scheme({uuid: uuid});
     mithril.request({method: 'GET', url: `/api/schemes/${uuid}.json`, type: Scheme}).then(function(scheme) {
       SchemeRepository.cache[scheme.uuid] = scheme;
+    });
+  },
+
+  fetchAll: function(uuid) {
+    SchemeRepository.fetchAllCalledAlready = true;
+    mithril.request({
+      method: 'GET',
+      url: '/api/schemes.json'
+    }).then(function(data) {
+      data.schemes.forEach((datum) => {
+        var scheme = new Scheme(datum);
+        SchemeRepository.cache[scheme.uuid] = scheme;
+      })
     });
   },
 

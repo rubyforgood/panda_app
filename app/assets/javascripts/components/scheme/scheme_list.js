@@ -7,7 +7,7 @@ const SchemeList = {
     };
 
     return {
-      schemes: function() { return [SchemeRepository.get('14f62f8e-2196-496b-a19d-893d6cf53c4d')] }
+      schemes: function() { return SchemeRepository.all(); }
     };
   },
 
