@@ -5,7 +5,7 @@ module Api
       email = params[:email_address] || current_user.email
 
       ExportMailer.export_email(email, params[:subject], csv_data)
-      head 200
+      redirect_to root_path
     rescue Mailgun::Error
       head 422
     end

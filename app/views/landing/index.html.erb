@@ -2,10 +2,22 @@
 <h3>Hello Ruby for Good!</h3>
 <p>
   <p>
-    <%= button_to "My Schemes", scheme_path %>
+    <%= link_to scheme_path do %>
+      <button type="button">My Schemes</button>
+    <% end %>
   </p>
 
   <p>
-    <%= button_to "My Observations", observe_path %>
+    <%= link_to observe_path do %>
+      <button type="button">My Observations</button>
+    <% end %>
+  </p>
+
+  <p>
+    <%= form_tag api_observation_session_exports_path(ObservationSession.last) do %>
+      <%= hidden_field_tag "email_address", current_user.email %>
+      <%= hidden_field_tag "subject", "Animal Observation Session" %>
+      <%= submit_tag "Email me my latest observation" %>
+    <% end %>
   </p>
 </p>
