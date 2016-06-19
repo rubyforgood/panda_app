@@ -1,0 +1,9 @@
+# Mailgun
+MAILGUN_API_KEY: "API Key"
+MAILGUN_DOMAIN: "Domain"
+MAILGUN_USERNAME: "Default SMTP Login"
+MAILGUN_PASSWORD: "Default Password"
+
+# Google Auth
+PANDA_GOOGLE_KEY: "Google auth key"
+PANDA_GOOGLE_SECRET: "Google auth secret"

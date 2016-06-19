@@ -15,6 +15,8 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+ENV.update YAML.load_file('config/application.yml')[Rails.env] rescue {}
+
 module PandaApp
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
