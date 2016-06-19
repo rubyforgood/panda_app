@@ -1,4 +1,4 @@
-class Admin::MailerController < Admin::ApplicationController
+class Admin::MailerController < ApplicationController
   # This controller is simply a development tool to preview email templates
   def preview_export_email
     @email = User.first.email
