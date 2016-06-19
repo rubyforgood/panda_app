@@ -62,6 +62,7 @@ html, body {
   background-color: $base-light;
   color: $dark;
   margin-bottom: 0.5em;
+  padding-bottom: .2em;
 }
 
 .box-event {
@@ -141,8 +142,9 @@ legend {
   background-color: $base-light;
   color: $light;
   margin: 0 0 0.5em;
-  padding: 0.2em 0.5em 0.2em 0.2em;
+  padding: 0.2em 0;
   text-align: left;
+  width: 100%;
 }
 
 .actions {

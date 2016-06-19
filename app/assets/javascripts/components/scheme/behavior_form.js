@@ -20,7 +20,7 @@ const BehaviorForm = {
     return ctrl;
   },
   view: function(ctrl) {
-    return <div>
+    return <div class="control-group">
       <div class="control-group">
         <label for={`scheme_behavior_${ ctrl.index }_name`}>
           Name
