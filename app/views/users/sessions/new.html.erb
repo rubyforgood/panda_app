@@ -1,3 +1,8 @@
 <h2>Log in</h2>
 
+<%= form_tag user_session_path do %>
+  <%= label_tag(:email, "Email") %>
+  <%= text_field_tag(:email) %>
+  <%= submit_tag("Login as Development User") %>
+<% end %>
 <%= render "users/shared/links" %>
