@@ -15,13 +15,13 @@ const NewObservationLink = {
 const SchemeSelector = {
   controller: function() {
     return {
-      schemes: SchemeRepository.all()
+      schemes: SchemeRepository.all
     }
   },
 
   view: function(ctrl) {
     return <select>
-      {ctrl.schemes.map((scheme) => {
+      {ctrl.schemes().map((scheme) => {
         return <option>{scheme.name}</option>;
       })}
     </select>;
@@ -227,6 +227,7 @@ const ObservationForm = {
         <h1 class="context-marker">
           <a href="#/">Red Pandas</a>
         </h1>
+        <SchemeSelector />
         <nav>
           <NavLink href="#/focus_animal">Focus Animal</NavLink>
         </nav>
