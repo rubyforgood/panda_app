@@ -7,6 +7,12 @@ Rails.application.routes.draw do
       omniauth_callbacks: "users/omniauth_callbacks"
     }
 
+  namespace :admin do
+    if Rails.env.development?
+      get 'mailer/:action' => 'mailer#:action'
+    end
+  end
+
   authenticate :user do
     namespace :api do
       resources :schemes, only: [:create, :show, :update, :index]
