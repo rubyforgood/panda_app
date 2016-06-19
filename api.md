@@ -165,9 +165,8 @@ Request:
 ```
 {
 	export: {
-		subject_line: 'something',
-		body: 'something else'
-		email_address: 'foo@bar.com'
+		subject: 'something',
+		email: 'foo@bar.com'
 	}	
 }
 ```
