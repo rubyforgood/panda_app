@@ -20,12 +20,13 @@ const BehaviorForm = {
   },
   view: function(ctrl) {
     return <div class="control-group">
-      <div class="control-group">
+      <div class="field">
         <label for={`scheme_behavior_${ ctrl.index }_name`}>
           Name
         </label>
         <input
           type="text"
+          class="field_entry"
           id={`scheme_behavior_${ ctrl.index }`}
           name={`scheme[behavior][${ ctrl.index }][name]`}
           value={ctrl.behavior.name}
