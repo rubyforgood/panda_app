@@ -10,10 +10,15 @@
 # Ignore vendored bundler requirements
 vendor
 
+# Ignore application.yml
+config/application.yml
+
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
 /tmp
+.byebug_history
+.ruby-version
 
 # ignore node cache
 node_modules

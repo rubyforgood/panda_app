@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160618144621) do
+ActiveRecord::Schema.define(version: 20160618161555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,30 +29,7 @@ ActiveRecord::Schema.define(version: 20160618144621) do
 
   add_index "behaviors", ["scheme_id", "name"], name: "index_behaviors_on_scheme_id_and_name", unique: true, using: :btree
 
-  create_table "observations", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.datetime "started_at",                    null: false
-    t.string   "event_type",                    null: false
-    t.float    "duration_seconds"
-    t.float    "time_lag_seconds"
-    t.text     "modifiers",        default: [],              array: true
-    t.text     "notes"
-    t.uuid     "session_id",                    null: false
-    t.uuid     "behavior_id",                   null: false
-    t.uuid     "actor_id"
-    t.uuid     "receiver_id"
-  end
-
-  add_index "observations", ["session_id"], name: "index_observations_on_session_id", using: :btree
-
-  create_table "schemes", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer "user_id",                     null: false
-    t.string  "name",                        null: false
-    t.text    "subject_groups", default: [],              array: true
-  end
-
-  add_index "schemes", ["id", "user_id", "name"], name: "index_schemes_on_id_and_user_id_and_name", unique: true, using: :btree
-
-  create_table "sessions", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+  create_table "observation_sessions", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer  "user_id",                  null: false
     t.string   "name"
     t.string   "observation_method"
@@ -66,6 +43,29 @@ ActiveRecord::Schema.define(version: 20160618144621) do
     t.uuid     "focal_animal_id"
     t.uuid     "focal_behavior_id"
   end
+
+  create_table "observations", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.datetime "started_at",                          null: false
+    t.string   "event_type",                          null: false
+    t.float    "duration_seconds"
+    t.float    "time_lag_seconds"
+    t.text     "modifiers",              default: [],              array: true
+    t.text     "notes"
+    t.uuid     "observation_session_id",              null: false
+    t.uuid     "behavior_id",                         null: false
+    t.uuid     "actor_id"
+    t.uuid     "receiver_id"
+  end
+
+  add_index "observations", ["observation_session_id"], name: "index_observations_on_observation_session_id", using: :btree
+
+  create_table "schemes", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer "user_id",                     null: false
+    t.string  "name",                        null: false
+    t.text    "subject_groups", default: [],              array: true
+  end
+
+  add_index "schemes", ["id", "user_id", "name"], name: "index_schemes_on_id_and_user_id_and_name", unique: true, using: :btree
 
   create_table "subjects", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string "name",                   null: false

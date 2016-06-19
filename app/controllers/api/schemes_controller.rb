@@ -20,7 +20,7 @@ module Api
     end
 
     def index
-
+      @schemes = Scheme.all
     end
 
     private
