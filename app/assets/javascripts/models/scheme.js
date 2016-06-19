@@ -7,6 +7,7 @@ const Scheme = function(params) {
   this.locked    = params.locked || false;
   this.subjects  = [];
   this.subjectGroups  = [];
+  this.modifiers  = [];
   this.behaviors = [];
   this.uuid      = params.uuid || uuid.v1();
 
@@ -30,7 +31,15 @@ const Scheme = function(params) {
   });
 
   this.addSubjectGroup = (() => {
-    this.subjectGroups.unshift({
+    this.subjectGroups.push({
+      uuid: uuid.v1(),
+      name: "",
+      editing: true
+    });
+  });
+  
+  this.addModifier = (() => {
+    this.modifiers.push({
       uuid: uuid.v1(),
       name: "",
       editing: true
@@ -42,9 +51,11 @@ const Scheme = function(params) {
       uuid: uuid.v1(),
       parent: null,
       name: "",
+      modifiers: [],
       editing: true
     });
   });
+  
 };
 
 module.exports = Scheme;

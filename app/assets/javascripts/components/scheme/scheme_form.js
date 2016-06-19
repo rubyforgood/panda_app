@@ -1,10 +1,10 @@
-var mithril = require('mithril');
+var m = require('mithril');
 const Behavior = require('./behavior');
 const BehaviorForm = require('./behavior_form');
+const Modifier = require('./modifier');
 const Subject = require('./subject');
-const EditableItem = require('./editable_item.js');
 const SubjectForm = require('./subject_form');
-const SubjectGroupForm = require('./subject_group_form');
+const SubjectGroup = require('./subject_group');
 const SchemeRepository = require('../../repositories/scheme_repository');
 
 const SchemeCreationForm = {
@@ -69,21 +69,9 @@ const SchemeCreationForm = {
         <p class="list-control">
           <a class="button button-add" onclick={() => ctrl.scheme.addSubjectGroup()}>Add</a>
         </p>
-        {ctrl.scheme.subjectGroups.map((group, index) => {
-          if (group.editing) {
-            return mithril.component(SubjectGroupForm, {
-              subjectGroup: group,
-              index: index
-            })
-          } else {
-            return mithril.component(EditableItem, {
-              namespace: 'scheme',
-              item: 'subject_group',
-              index: index,
-              text: group.name
-            })
-          }
-        })}
+        <SubjectGroup
+          subjectGroups={ctrl.scheme.subjectGroups}
+        />
       </fieldset>
       <fieldset class="field">
         <legend>Subjects</legend>
@@ -92,12 +80,21 @@ const SchemeCreationForm = {
         </p>
         {ctrl.scheme.subjects.map((subject, index) => {
           var component = subject.editing ? SubjectForm : Subject;
-          return mithril.component(component, {
+          return m.component(component, {
             subject: subject,
             index: index,
             subjectGroups: ctrl.scheme.subjectGroups
           })
         })}
+      </fieldset>
+      <fieldset class="field">
+        <legend>Modifiers</legend>
+        <p class="list-control">
+          <a class="button button-add" onclick={() => ctrl.scheme.addModifier()}>Add</a>
+        </p>
+        <Modifier
+          modifiers={ctrl.scheme.modifiers}
+        />
       </fieldset>
       <fieldset class="field">
         <legend>Behaviors</legend>
@@ -106,9 +103,10 @@ const SchemeCreationForm = {
         </p>
         {ctrl.scheme.behaviors.map((behavior, index) => {
           var component = behavior.editing ? BehaviorForm : Behavior;
-          return mithril.component(component, {
+          return m.component(component, {
             parentBehaviors: ctrl.parentBehaviors(),
             behavior: behavior,
+            modifiers: ctrl.scheme.modifiers,
             index: index
           });
         })}

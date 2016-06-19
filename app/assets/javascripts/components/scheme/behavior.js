@@ -5,16 +5,22 @@ const Behavior = {
   controller: function (args) {
     return {
       behavior: args.behavior,
-      index: args.index
+      modifiers: args.modifiers,
+      index: args.index,
+      parentBehaviors: args.parentBehaviors
     }
   },
   view: function (ctrl) {
-    var text = `Type: ${ctrl.behavior.type} - ME: ${ctrl.behavior.mutually_exclusive} - Target: ${ctrl.behavior.target}`
-    return <EditableItem
+    var text = `Type: ${ctrl.behavior.type} - ME: ${ctrl.behavior.mutually_exclusive} - Target: ${ctrl.behavior.target}`;
+    return <div class="behavior">
+    <EditableItem
       namespace={ctrl.behavior.type}
       item={ctrl.behavior.name}
       index={ctrl.index}
-      text={text} />
+      text={ctrl.behavior.name} />
+      <span>{text}</span>
+      <span>{ctrl.parentBehaviors.join(' - ')}</span>
+    </div>
   }
 };
 

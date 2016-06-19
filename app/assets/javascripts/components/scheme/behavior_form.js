@@ -1,10 +1,12 @@
 var m = require('mithril');
 const RadioGroup = require('../inputs/radio_group.js');
+const CheckboxGroup = require('../inputs/checkbox_group.js');
 
 const BehaviorForm = {
   controller: function (args) {
     var ctrl = {
       behavior: args.behavior,
+      modifiers: args.modifiers,
       index: args.index,
       parentBehaviors: args.parentBehaviors
     };
@@ -74,6 +76,14 @@ const BehaviorForm = {
         />
       </div>
       { renderParentBehaviors(ctrl.parentBehaviors, ctrl.index) }
+      <CheckboxGroup
+        divText="Modifiers:"
+        collection={ctrl.modifiers}
+        associations={ctrl.behavior.modifiers}
+        namespace="scheme"
+        item="modifier"
+        attribute="name"
+      />
     </div>
   }
 };

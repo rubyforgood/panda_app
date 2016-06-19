@@ -1,3 +1,6 @@
+var m = require('mithril');
+const CheckboxGroup = require('../inputs/checkbox_group.js');
+
 const SubjectForm = {
   controller: function (args) {
     return {
@@ -19,21 +22,14 @@ const SubjectForm = {
         value={ctrl.subject.name}
         onchange={(e)=> { ctrl.subject.name = e.target.value }}
       />
-      <div class="control-group">
-        Groups:
-        {ctrl.subjectGroups.map((group, index) => {
-          return <label>
-            <input
-              type="checkbox"
-              value={group.name}
-              id={`scheme_subject_group_${index}`}
-              name="scheme[subject_group][name]"
-              checked={ctrl.subject.groups.includes(group)}
-            />
-            {group.name}
-          </label>
-        })}
-      </div>
+      <CheckboxGroup
+        divText="Groups: "
+        collection={ctrl.subjectGroups}
+        associations={ctrl.subject.groups}
+        namespace="scheme"
+        item="subject_group"
+        attribute="name"
+      />
     </div>
   }
 };
