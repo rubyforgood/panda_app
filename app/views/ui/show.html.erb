@@ -1,0 +1,31 @@
+<h1 class="context-marker">Scheme</h1>
+<div class="box box-state">
+<%= form_for fake, as: :observation, :url => '/' do |f| %>
+  <p class="field">
+    <%= f.label :animal %><br />
+    <%= f.text_field :animal, class: 'field_entry' %>
+  </p>
+  <p class="field">
+    <%= f.label 'Animal 2'%>
+    <%= f.text_field :animal, class: 'field_entry' %></p>
+  <p class="actions"><%= f.submit %></p>
+<%- end -%>
+</div>
+
+<h1 class="context-marker">Observation</h1>
+<div class="box box-event">
+<%= form_for fake, as: :observation, :url => '/' do |f| %>
+  <p class="field"><%= f.label :animal %><br />
+    <%= f.text_field :animal, class: 'field_entry' %></p>
+  <p class="field">Target<br />
+    <%= f.radio_button :animal, "self", id: 'self' %><%= f.label :self, for: 'self' %>
+    <%= f.radio_button :animal, "other", id: 'other' %><%= f.label :other, for: 'other' %>
+    <%= f.radio_button :animal, "none", id: 'none' %><%= f.label :none, for: 'none' %></p>
+  <p class="actions"><%= f.submit %></p>
+</div>
+<div class="box box-event">
+  <p class="field"><%= f.label :animal %><br />
+    <%= f.check_box :animal %></p>
+  <p class="actions"><%= f.submit %></p>
+<%- end -%>
+</div>

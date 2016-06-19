@@ -1,18 +1,12 @@
-var m = require('mithril');
+var mithril = require('mithril');
 
-var Hello = {
-  controller: function() {
-    return { name: 'Earth', populace: ['Betsy', 'Julie', 'Nate'] };
-  },
+var apps = {
+  SchemeList: require('./components/scheme/scheme_list'),
+  ObservationForm: require('./components/observation_form'),
+};
 
-  view: function(ctrl) {
-    return <div>
-      <h1>{`Hello ${ctrl.name}`}</h1>
-      {ctrl.populace.map((person) => {
-        return <p>{person}</p>;
-      })}
-    </div>;
-  }
-}
+var element = document.querySelector('[data-mithril-component]');
+var app = apps[element.getAttribute('data-mithril-component')];
 
-m.mount(document.getElementById('main'), Hello);
+mithril.route.mode = "hash";
+mithril.route(element, '/', app.routes);

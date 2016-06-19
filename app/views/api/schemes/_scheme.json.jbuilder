@@ -1,4 +1,4 @@
-json.(scheme, :name, :id, :subject_groups)
+json.(scheme, :name, :id, :uuid, :subject_groups)
 
-json.subjects scheme.subjects, :id, :name, :groups
-json.behaviors scheme.behaviors, :id, :name, :target_type, :type, :parent_behavior_id
+json.subjects scheme.subjects, :id, :uuid, :name, :groups
+json.behaviors scheme.behaviors, :id, :uuid, :name, :target_type, :type, :parent_behavior_id
