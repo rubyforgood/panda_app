@@ -147,9 +147,9 @@ html, body {
 }
 
 .button-commit {
-  border-color: $light;
-  @include gradient($darkened, $dark);
-  color: $light;
+  border-color: $alternate-dark;
+  @include gradient($alternate, $alternate-light);
+  color: $alternate-dark;
 }
 
 .destructive {
