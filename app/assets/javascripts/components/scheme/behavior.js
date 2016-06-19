@@ -1,5 +1,5 @@
-const m = require('mithril')
-const EditableItem = require('./editable_item.js')
+const m = require('mithril');
+const EditableItem = require('./editable_item.js');
 
 const Behavior = {
   controller: function (args) {

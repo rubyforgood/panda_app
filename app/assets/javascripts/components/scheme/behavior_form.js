@@ -1,5 +1,4 @@
 var m = require('mithril');
-
 const RadioGroup = require('../inputs/radio_group.js');
 
 const BehaviorForm = {

@@ -28,13 +28,12 @@ We are building a web app for use on phones and tables that will help researcher
 - cd into the folder for the repo `cd panda_app`
 - bundle `bundle install`
 - install node packages `npm install`
-- install mocha for js tests `npm install -g mocha`
 - setup the database `rake db:create`
 - To serve the app locally `rails server`
 
 ### Tests
 - Run the rails test suite with `bundle exec rspec`
-- Run the javascript tests with `mocha app/assets/javascripts/tests/`
+- Run the javascript tests with `npm test`
 
 ## The Stack
 - Ruby 2.3
