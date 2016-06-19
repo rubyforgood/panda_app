@@ -21,7 +21,7 @@ const RadioGroup = {
   },
   view: function (ctrl) {
     var options = ctrl.collection.map(function(pair){
-      return <label class="option" for={ctrl.id(pair[1])}>
+      return <label class="button button-select" for={ctrl.id(pair[1])}>
         <input
           type="radio"
           id={ctrl.id(pair[1])}
