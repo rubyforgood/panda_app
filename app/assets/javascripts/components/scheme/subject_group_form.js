@@ -17,7 +17,6 @@ const SubjectGroupForm = {
         name="scheme[subject_group][name]"
         value={ctrl.subjectGroup.name}
       />
-      <button class="button button-commit">save</button>
     </div>;
   }
 };

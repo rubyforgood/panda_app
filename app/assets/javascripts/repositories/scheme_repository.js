@@ -45,9 +45,22 @@ const SchemeRepository = {
           id:     scheme.uuid,
           name:   scheme.name,
           locked: scheme.locked,
-          behaviors_attributes: scheme.behaviors,
-          subjects_attributes: scheme.subjects,
-
+          behaviors_attributes: scheme.behaviors.map((behavior) => {
+            return {
+              id: behavior.uuid,
+              name: behavior.name,
+              type: behavior.type,
+              target_type: behavior.target,
+              mutually_exclusive: behavior.mutually_exclusive
+            }
+          }),
+          subjects_attributes: scheme.subjects.map((subject) => {
+            return {
+              id: subject.uuid,
+              name: subject.name,
+              groups: subject.groups
+            }
+          })
         }
       };
     }

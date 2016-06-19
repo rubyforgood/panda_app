@@ -34,7 +34,6 @@ const SubjectForm = {
           </label>
         })}
       </div>
-      <button class="button button-commit">save</button>
     </div>
   }
 };

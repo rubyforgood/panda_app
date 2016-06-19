@@ -8,14 +8,14 @@ const BehaviorForm = {
       index: args.index,
       parentBehaviors: args.parentBehaviors
     };
-    
+
     ctrl.selected_type = function(key) {
       return this.behavior.type == key
     }.bind(ctrl);
     ctrl.selected_target = function(key){
       return this.behavior.target == key
     }.bind(ctrl);
-    
+
     return ctrl;
   },
   view: function(ctrl) {
@@ -73,7 +73,6 @@ const BehaviorForm = {
         />
       </div>
       { renderParentBehaviors(ctrl.parentBehaviors, ctrl.index) }
-      <button class="button button-commit">save</button>
     </div>
   }
 };
