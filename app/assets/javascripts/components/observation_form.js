@@ -7,7 +7,7 @@ const ObservationRepository = require('../repositories/observation_repository');
 
 const NewObservationLink = {
   view: function(){
-    return <h1 class="context-marker"><a href="#">&#8592; New Observation</a></h1>
+    return <h1 class="context-marker"><a href="#">&#8592; New Observation&hellip;</a></h1>
   }
 }
 
@@ -88,8 +88,8 @@ const FocusAnimal = {
     return (
       <div class="box">
         <h1 class="context-marker"><NewObservationLink /></h1>
+        <p class="counter context-marker in-process">Staged observations: {staged_observations.length}</p>
         {this.select_actor(ctrl)}
-        <p class="counter">Staged observations: {staged_observations.length}</p>
         {this.content(ctrl)}
         <div class="actions">
           <button class="button button-commit" onclick={() => ctrl.complete_session()}>

@@ -22,14 +22,18 @@ html, body {
   padding: 0;
 }
 
+.flashes {
+  display: flex;
+}
+
 .flash {
-  @extend .in-process;
   color: $dark;
   margin: 0;
   padding: 0.5em;
 }
 
 .flash-alert {
+  @extend .in-process;
   background-color: $warning;
 }
 
@@ -61,16 +65,18 @@ html, body {
 .context-marker {
   background-color: $dark;
   color: $lightened;
-  border-top: 1px solid $lightened;
   font-size: 0.9em;
   margin: 0;
   padding: 0.1em 0.2em;
   a {
-    color: $lightened;
+    color: $light;
+    text-decoration: none;
   }
 }
 
 .counter {
+  background-color: $darkened;
+  @extend .in-process;
   margin: 0;
   padding: 0.4em;
 }
@@ -162,7 +168,7 @@ html, body {
 fieldset {
   background-color: $lightened;
   border: none;
-  margin: 0 0 1em;
+  margin: 0.5em 0 1em;
   padding: 0 0 1em;
 }
 

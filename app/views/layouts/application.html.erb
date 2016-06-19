@@ -8,13 +8,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% flash.keys.each do |key| %>
-  <p class="flash flash-<%= key %>"><%= self.public_send(key) %></p>
+<%- unless flash.keys.empty? %>
+<div class="flashes">
+  <%- flash.keys.each do |key| -%>
+    <p class="flash flash-<%= key %>"><%= self.public_send(key) %></p>
+  <%- end -%>
+</div>
 <%- end -%>
 
 <div class="auth">
 <% if user_signed_in? %>
-  <p class="auth-as in-process"><%= user_name %></p>
+  <p class="auth-as"><%= user_name %></p>
   <%= form_tag(destroy_user_session_path, method: :delete, class: 'auth-end') do %>
     <%= submit_tag('Sign out') %>
   <% end %>
