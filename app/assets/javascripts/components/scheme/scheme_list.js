@@ -7,7 +7,7 @@ const SchemeList = {
     };
 
     return {
-      schemes: window.SchemeRepository.all()
+      schemes: SchemeRepository.all()
     };
   },
 
@@ -16,13 +16,11 @@ const SchemeList = {
       <h1 class="context-marker">Schemes</h1>
       <p class="list-control"><a class="button button-add" href="#/new">+ Add Scheme</a></p>
       {ctrl.schemes.map((scheme, index) => {
-        return (
-          <div class={`control-group scheme_${index}`}>
-            <button onclick="function(){ ctrl.remove(index) }">-</button>
-            {scheme.name}
-            <button>edit</button>
-          </div>
-        )
+        return <div class={`control-group scheme_${index}`}>
+          <button onclick={() => ctrl.remove(index) }>-</button>
+          {scheme.name}
+          <button>edit</button>
+        </div>
       })}
     </div>;
   }
