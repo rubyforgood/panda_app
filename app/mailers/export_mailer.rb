@@ -6,11 +6,11 @@ class ExportMailer < ActionMailer::Base
     end
   end
 
-  def export_email(email, subject, csv_string)
+  def self.export_email(email, subject, csv_string)
     @email = email
     mg_client = Mailgun::Client.new ENV["MAILGUN_API_KEY"]
-    html_output = render_to_string template: "export_mailer/export_email.html.erb"
-    text_output = render_to_string template: "export_mailer/export_email.text.erb"
+    html_output = render_to_string "export_email.html.erb"
+    text_output = render_to_string "export_email.text.erb"
 
     attachment = Attachment.new(StringIO.new(csv_string))
 
@@ -22,5 +22,9 @@ class ExportMailer < ActionMailer::Base
                       :attachment => attachment
                      }
     mg_client.send_message ENV["MAILGUN_DOMAIN"], message_params
+  end
+
+  def self.render_to_string template
+    ERB.new(File.read("#{Rails.root}/app/views/export_mailer/#{template}")).result(binding)
   end
 end
