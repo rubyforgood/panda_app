@@ -5,6 +5,12 @@ const NavLink = require('./nav_link');
 const Scheme = require('../models/scheme');
 const ObservationRepository = require('../repositories/observation_repository');
 
+const NewObservationLink = {
+  view: function(){
+    return <h1 class="context-marker"><a href="#">&#8592; New Observation</a></h1>
+  }
+}
+
 let scheme = new Scheme({
   name: 'Foo',
   locked: true,
@@ -81,7 +87,7 @@ const FocusAnimal = {
   view: function(ctrl) {
     return (
       <div class="box">
-        <h1 class="context_marker">Focus Animal</h1>
+        <h1 class="context-marker"><NewObservationLink /></h1>
         <p>Staged observations: {staged_observations.length}</p>
         {this.select_actor(ctrl)}
         {this.content(ctrl)}
@@ -98,58 +104,54 @@ const FocusAnimal = {
     const actor = new_observation.actor;
 
     if(actor) {
-      return <div>Actor: {actor.name}</div>;
+      return <h2 class="context-marker">Subject: {actor.name}</h2>;
     }
 
     return(
-      <div>
-        <p>Select an actor</p>
+      <fieldset class="box box-event">
+        <legend class="observation-legend">Select a subject</legend>
         {scheme.subjects.map(subject => {
           if(new_observation.actor === subject) {
             return <span> {subject.name} </span>;
           } else {
             return(
-              <button onclick={() => new_observation.actor = subject}>
+              <button class="button" onclick={ () => new_observation.actor = subject }>
                 {subject.name}
               </button>
             );
           }
         })}
-      </div>
+      </fieldset>
     );
   },
 
   select_behavior: function(ctrl) {
     return(
-      <div>
-        <header>
-          <h2>Select Behavior</h2>
-        </header>
-        {scheme.behaviors.map(behavior => {
+      <fieldset class="box box-event">
+        <legend class="observation-legend">Select Behavior</legend>
+        {ctrl.behaviors.map(behavior => {
           return(
-            <button onclick={() => new_observation.behavior = behavior}>
+            <button class="button" onclick={() => new_observation.behavior = behavior}>
               {behavior.name}
             </button>
           );
         })}
-      </div>
+      </fieldset>
     );
   },
 
   select_target: function(ctrl) {
     return(
-      <div>
-        <header>
-          <h2>Select target</h2>
-        </header>
+      <fieldset class="box box-event">
+        <legend class="observation-legend">Select target</legend>
         {scheme.subjects.map(subject => {
           return(
-            <button onclick={() => new_observation.target = subject}>
+            <button class="button" onclick={() => new_observation.target = subject}>
               {subject.name}
             </button>
           );
         })}
-      </div>
+      </fieldset>
     );
   },
 
@@ -173,18 +175,21 @@ const FocusAnimal = {
 
       return(
         <div>
+          <fieldset class="box box-event">
+            <legend class="observation-legend">Modifier</legend>
           {
             leftover_modifiers.map(modifier => {
               return(
-                <button onclick={() => new_observation.modifiers.push(modifier)}>
+                <button class="button" onclick={() => new_observation.modifiers.push(modifier)}>
                   {modifier}
                 </button>
               );
             })
           }
-          <div>
-            <button onclick={() => ctrl.stage_observation()}>
-              New Observation
+          </fieldset>
+          <div class="box">
+            <button class="button button-add" onclick={() => ctrl.stage_observation()}>
+              &#8592; New Observation for { new_observation.actor.name }
             </button>
           </div>
         </div>
@@ -202,7 +207,7 @@ const ObservationForm = {
   view: function(ctrl) {
     return (
       <div class="box">
-        <h1 class="context_marker">
+        <h1 class="context-marker">
           <a href="#/">Red Pandas</a>
         </h1>
         <nav>

@@ -67,7 +67,7 @@ const BehaviorForm = {
         />
       </div>
       { renderParentBehaviors(ctrl.parentBehaviors, ctrl.index) }
-      <button>save</button>
+      <button class="button button-commit">save</button>
     </div>
   }
 };

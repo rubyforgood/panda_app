@@ -6,17 +6,18 @@ const SubjectGroupForm = {
     }
   },
   view: function (ctrl) {
-    return <div class="control-group">
+    return <div class="field">
       <label for="scheme_subject_group_name">
         Name:
       </label>
       <input
         type="text"
+        class="field_entry"
         id="scheme_subject_group_name"
         name="scheme[subject_group][name]"
         value={ctrl.subjectGroup.name}
       />
-      <button>save</button>
+      <button class="button button-commit">save</button>
     </div>;
   }
 };

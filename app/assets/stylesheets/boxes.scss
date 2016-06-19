@@ -12,6 +12,8 @@ $darkened: rgba(0, 0, 0, 0.4);
 $light: #fff;
 $lightened: rgba(255, 255, 255, 0.5);
 
+$warning: red;
+
 @mixin gradient($from-color, $to-color) {
     background-color: mix($from-color, $to-color); /* Fallback */
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from-color), to($to-color));
@@ -91,7 +93,7 @@ html, body {
 }
 
 .list-control {
-  border-bottom: 1px solid $neutral;
+  border-bottom: 1px solid $darkened;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -112,10 +114,21 @@ html, body {
   color: white;
 }
 
+.button-nav {
+  @include gradient($alternate-light, $alternate);
+  color: $dark;
+}
+
 .button-remove {
   color: $dark;
-  background-color: red;
+  background-color: $warning;
   border-radius: 0px;
+}
+
+.button-commit {
+  border-color: $light;
+  @include gradient($darkened, $dark);
+  color: $light;
 }
 
 .destructive {
@@ -145,6 +158,10 @@ legend {
   padding: 0.2em 0;
   text-align: left;
   width: 100%;
+}
+
+.observation-legend {
+  background-color: $alternate;
 }
 
 .actions {
