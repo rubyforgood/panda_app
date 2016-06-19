@@ -1,13 +1,16 @@
 const Scheme = require('./../models/scheme');
-Object.values = function(obj) {
-  var collect = [];
-  for (k in obj) {
-    if (obj.hasOwnProperty(k)) {
-      collect.push(obj[k]);
+
+if(!Object.values) {
+  Object.values = function(obj) {
+    var collect = [];
+    for (k in obj) {
+      if (obj.hasOwnProperty(k)) {
+        collect.push(obj[k]);
+      }
     }
-  }
-  return collect;
-};
+    return collect;
+  };
+}
 
 const SchemeRepository = {
   all: function() {
