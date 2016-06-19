@@ -3,11 +3,28 @@ const uuid = require('node-uuid');
 
 const NavLink = require('./nav_link');
 const Scheme = require('../models/scheme');
+const SchemeRepository = require('../repositories/scheme_repository');
 const ObservationRepository = require('../repositories/observation_repository');
 
 const NewObservationLink = {
   view: function(){
     return <h1 class="context-marker"><a href="#">&#8592; New Observation&hellip;</a></h1>
+  }
+}
+
+const SchemeSelector = {
+  controller: function() {
+    return {
+      schemes: SchemeRepository.all()
+    }
+  },
+
+  view: function(ctrl) {
+    return <select>
+      {ctrl.schemes.map((scheme) => {
+        return <option>{scheme.name}</option>;
+      })}
+    </select>;
   }
 }
 
