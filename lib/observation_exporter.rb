@@ -21,7 +21,7 @@ class ObservationExporter
     #{observation['event_type']},
     #{observation['duration_seconds']},
     #{observation['time_lag_seconds']},
-    #{observation['modifiers']&.to_sentence},
+    #{observation['modifiers']&.join(' ')},
     #{observation['notes']},
     #{Behavior.find(observation['behavior_id'])&.name},
     #{Subject.find(observation['actor_id'])&.name},
