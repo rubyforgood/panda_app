@@ -9,7 +9,7 @@
 </head>
 <body>
 <% flash.keys.each do |key| %>
-  <p class="<%= key %>"><%= self.public_send(key) %></p>
+  <p class="flash flash-<%= key %>"><%= self.public_send(key) %></p>
 <%- end -%>
 
 <div class="auth">
@@ -20,7 +20,7 @@
   <% end %>
 <% else %>
   <p class="auth-entry">
-    <%= link_to "Sign in", new_user_session_path %>
+    <%= link_to "Sign in &rarr;".html_safe, new_user_session_path %>
   </p>
 <% end %>
 </div>
