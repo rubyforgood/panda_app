@@ -108,11 +108,14 @@ const SchemeCreationForm = {
         })}
       </fieldset>
 
-      <input
-        type='submit'
-        value='Save'
-        onclick={ (e) => { e.preventDefault(); ctrl.save(); } }
-      />
+      <div class="actions">
+        <input
+          type='submit'
+          class="button button-commit"
+          value='Save'
+          onclick={ (e) => { e.preventDefault(); ctrl.save(); } }
+        />
+      </div>
     </form>;
   }
 };
