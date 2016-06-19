@@ -147,6 +147,12 @@ html, body {
   border-radius: 0px;
 }
 
+.button-select {
+  color: $light;
+  background-color: $darkened;
+  margin: 0.2em;
+}
+
 .button-commit {
   border-color: $alternate-dark;
   @include gradient($alternate, $alternate-light);
