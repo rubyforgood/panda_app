@@ -12,7 +12,7 @@ $darkened: rgba(0, 0, 0, 0.4);
 $light: #fff;
 $lightened: rgba(255, 255, 255, 0.5);
 
-$warning: red;
+$warning: #fc5534;
 
 @mixin gradient($from-color, $to-color) {
     background-color: mix($from-color, $to-color); /* Fallback */

@@ -50,7 +50,8 @@ html, body {
 }
 
 .auth-end {
-  background-color: red;
+  background-color: $warning;
+  padding: 0.2em;
 }
 
 .auth-entry {
@@ -58,11 +59,15 @@ html, body {
 }
 
 .context-marker {
-  background-color: $neutral;
-  color: $darkened;
-  font-size: 0.7em;
+  background-color: $dark;
+  color: $lightened;
+  border-top: 1px solid $lightened;
+  font-size: 0.9em;
   margin: 0;
   padding: 0.1em 0.2em;
+  a {
+    color: $lightened;
+  }
 }
 
 .counter {
