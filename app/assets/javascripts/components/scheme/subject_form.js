@@ -1,24 +1,40 @@
 const SubjectForm = {
   controller: function (args) {
     return {
-      // change to args.subject || new Subject() when model created
-      // TODO: how to account for subject groups?
-      subject: args.subject
+      subject: args.subject,
+      index: args.index,
+      subjectGroups: args.subjectGroups
     }
   },
   view: function (ctrl) {
-    return <div class="control-group">
+    return <div class="field">
       <label for="scheme_subject">
         Name:
       </label>
       < input
         type="text"
+        class="field_entry"
         id="scheme_subject"
-        name="scheme[subject]"
+        name="scheme[subject][name]"
         value={ctrl.subject.name}
         onchange={(e)=> { ctrl.subject.name = e.target.value }}
       />
-      <button>save</button>
+      <div class="control-group">
+        Groups:
+        {ctrl.subjectGroups.map((group, index) => {
+          return <label>
+            <input
+              type="checkbox"
+              value={group.name}
+              id={`scheme_subject_group_${index}`}
+              name="scheme[subject_group][name]"
+              checked={ctrl.subject.groups.includes(group)}
+            />
+            {group.name}
+          </label>
+        })}
+      </div>
+      <button class="button button-commit">save</button>
     </div>
   }
 };

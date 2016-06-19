@@ -1,25 +1,25 @@
 var m = require('mithril');
-
 const RadioGroup = require('../inputs/radio_group.js');
 
 const BehaviorForm = {
-  controller: function(args) {
-    // change to args.behavior || new Behavior() when model created
-    // TODO: how to account for parent/child group?
+  controller: function (args) {
     var ctrl = {
       behavior: args.behavior,
       index: args.index,
-    }
+      parentBehaviors: args.parentBehaviors
+    };
+    
     ctrl.selected_type = function(key) {
       return this.behavior.type == key
     }.bind(ctrl);
     ctrl.selected_target = function(key){
       return this.behavior.target == key
     }.bind(ctrl);
+    
     return ctrl;
   },
   view: function(ctrl) {
-    return <div>
+    return <div class="control-group">
       <div class="control-group">
         <label for={`scheme_behavior_${ ctrl.index }_name`}>
           Name
@@ -72,8 +72,24 @@ const BehaviorForm = {
           onchange={(e)=> { ctrl.behavior.mutually_exclusive = e.target.checked }}
         />
       </div>
+      { renderParentBehaviors(ctrl.parentBehaviors, ctrl.index) }
+      <button class="button button-commit">save</button>
     </div>
   }
 };
 
 module.exports = BehaviorForm;
+
+function renderParentBehaviors(parentBehaviors, index) {
+  if (parentBehaviors) {
+    return <div class="control-group">
+      <label for={`parent_behavior_${index}`}>Parent Behavior: </label>
+      <select id={`parent_behavior_${index}`}>
+        <option></option>
+        {parentBehaviors.map((behavior) => {
+          return <option value={behavior.uuid}>{behavior.name}</option>;
+        })}
+      </select>
+    </div>;
+  }
+}

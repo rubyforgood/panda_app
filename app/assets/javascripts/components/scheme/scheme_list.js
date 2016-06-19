@@ -18,7 +18,7 @@ const SchemeList = {
       {ctrl.schemes().map((scheme, index) => {
         return (
           <div class={`control-group scheme_${index}`}>
-            <button onclick="function(){ ctrl.remove(index) }">-</button>
+            <button onclick={() => ctrl.remove(index) }>-</button>
             {scheme.name}
             <button>edit</button>
           </div>

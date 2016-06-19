@@ -8,7 +8,7 @@ module.exports = {
 
   view: function(ctrl) {
     return (
-      <a href={ctrl.opts.href} class="button button-add">{ctrl.children}</a>
+      <a href={ctrl.opts.href} class="button button-nav">{ctrl.children}</a>
     );
   },
 };

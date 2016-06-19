@@ -32,7 +32,8 @@ We are building a web app for use on phones and tables that will help researcher
 - To serve the app locally `rails server`
 
 ### Tests
- Run the test suite with `bundle exec rspec`
+- Run the rails test suite with `bundle exec rspec`
+- Run the javascript tests with `npm test`
 
 ## The Stack
 - Ruby 2.3
