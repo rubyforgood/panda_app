@@ -1,0 +1,43 @@
+$base: #2C8682;
+$base-dark: darken($base, 10);
+$base-light: lighten($base, 30);
+
+$alternate: #fc9834;
+$alternate-dark: darken($alternate, 70);
+$alternate-light: lighten($alternate, 30);
+
+$dark: #222;
+$neutral: #ddd;
+$darkened: rgba(0, 0, 0, 0.4);
+$light: #fff;
+$lightened: rgba(255, 255, 255, 0.5);
+
+$warning: red;
+
+@mixin gradient($from-color, $to-color) {
+    background-color: mix($from-color, $to-color); /* Fallback */
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from-color), to($to-color));
+    background-image: -webkit-linear-gradient(top, $from-color, $to-color);
+    background-image:    -moz-linear-gradient(top, $from-color, $to-color);
+    background-image:     -ms-linear-gradient(top, $from-color, $to-color);
+    background-image:      -o-linear-gradient(top, $from-color, $to-color);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$from-color}', EndColorStr='#{$to-color}')";
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+@mixin border-bottom-right-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-top-right-radius($radius) {
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+  background-clip: padding-box;
+}
